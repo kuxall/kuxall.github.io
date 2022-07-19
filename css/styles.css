@@ -42,9 +42,13 @@ h3 {
 }
 
 a.nav-link:hover {
-  color: #ef5350 !important;
+  color: #16ff01 !important;
   text-decoration: none;
   cursor: pointer;
+}
+
+a.nav-link:active {
+  background-color: red;
 }
 
 .padding-on-md {
