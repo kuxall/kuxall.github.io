@@ -1,3 +1,4 @@
 # kuxall.github.io
 
-# Find about me here: https://www.whoispythonist.me/
+This Site Contains The Information That I Want To Share With The All Of You.
+Thank You
