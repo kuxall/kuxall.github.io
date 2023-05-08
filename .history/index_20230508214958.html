@@ -279,14 +279,6 @@
 
 					<div class="flex-card">
 						<pre class="text">
-
-</pre>
-					</div>
-				</div>
-			</div>
-
-			<div class="flex-card">
-				<pre class="text">
 		<span class="highlight-red">let</span> modules = [
 		<span class="highlight-blue">'Pandas'</span>,
 		<span class="highlight-blue">'Numpy'</span>,
@@ -298,79 +290,81 @@
 		<span class="highlight-blue">'Keras'</span>,
 		]
 		</pre>
-				<pre class="text">
+						<pre class="text">
 <span class="highlight-red">let</span> Tools = [<span class="highlight-blue">'Prodigy'</span>,<span class="highlight-blue">'UBIAI'</span>, <span class="highlight-blue">'Label-Studio'</span>
 ]
 </pre>
-				<div id="contact" class="row padding-top">
-					<h2>Contact</h2>
-					<form>
-						<div class="form-group ">
-							<label>E-Mail Subject</label>
-							<input type="input" class="form-control" id="mailsubject" aria-describedby="emailHelp"
-								placeholder="Subject">
+						<div id="contact" class="row padding-top">
+							<h2>Contact</h2>
+							<form>
+								<div class="form-group ">
+									<label>E-Mail Subject</label>
+									<input type="input" class="form-control" id="mailsubject"
+										aria-describedby="emailHelp" placeholder="Subject">
+								</div>
+								<div class="form-group" style="padding-top: 1rem;">
+									<label>E-Mail Content</label>
+									<textarea type="text" class="form-control" id="mailbody"
+										placeholder="Content"></textarea>
+									<small id="emailHelp" class="form-text text-muted">Share some thoughts
+										or
+										something else.</small>
+								</div>
+								<button type="submit" class="btn btn-primary float-end"
+									onclick="sendMail()">Submit</button>
+							</form>
 						</div>
-						<div class="form-group" style="padding-top: 1rem;">
-							<label>E-Mail Content</label>
-							<textarea type="text" class="form-control" id="mailbody" placeholder="Content"></textarea>
-							<small id="emailHelp" class="form-text text-muted">Share some thoughts
-								or
-								something else.</small>
-						</div>
-						<button type="submit" class="btn btn-primary float-end" onclick="sendMail()">Submit</button>
-					</form>
-				</div>
 
-				<div class="row">
-					<div class="col-6 col-md-4">
-						<a href="https://www.linkedin.com/in/kushal-raj-sharma-259044176/" target="_blank"
-							rel="noopener"><img class="img mx-auto d-block socials"
-								src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"
-								alt="linkedin"></a>
-					</div>
-					<!-- <div class="col-6 col-md-4">
+						<div class="row">
+							<div class="col-6 col-md-4">
+								<a href="https://www.linkedin.com/in/kushal-raj-sharma-259044176/" target="_blank"
+									rel="noopener"><img class="img mx-auto d-block socials"
+										src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"
+										alt="linkedin"></a>
+							</div>
+							<!-- <div class="col-6 col-md-4">
 				<a href="https://dev.to/schmelto" target="_blank" rel="noopener"><img
 						class="img mx-auto d-block socials"
 						src="https://img.shields.io/badge/dev.to-0A0A0A?style=for-the-badge&logo=dev.to&logoColor=white"
 						alt="dev.to"></a>
 			</div> -->
-					<!-- <div class="col-6 col-md-4">
+							<!-- <div class="col-6 col-md-4">
 				<a href="https://people.sap.com/schmelto" target="_blank" rel="noopener"><img
 						class="img mx-auto d-block socials"
 						src="https://img.shields.io/badge/SAP-0FAAFF?style=for-the-badge&logo=sap&logoColor=white"
 						alt="sap"></a>
 			</div> -->
-					<div class="col-6 col-md-4">
-						<a href="https://www.facebook.com/kushal.pythonist" target="_blank" rel="noopener"><img
-								class="img mx-auto d-block socials"
-								src="https://img.shields.io/badge/Facebook-1DA1F2?style=for-the-badge&logo=facebook&logoColor=white"
-								alt="facebook"></a>
-					</div>
-					<div class="col-6 col-md-4">
-						<a href="https://www.instagram.com/pythonist__" target="_blank" rel="noopener"><img
-								class="img mx-auto d-block socials"
-								src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"
-								alt="instagram"></a>
-					</div>
-					<div class="col-6 col-md-4">
-						<a href="https://twitter.com/HYPEPythonist" target="_blank" rel="noopener"><img
-								class="img mx-auto d-block socials"
-								src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white"
-								alt="twitter"></a>
-					</div>
-					<div class="col-6 col-md-4">
-						<a href="https://github.com/kuxall" target="_blank" rel="noopener"><img
-								class="img mx-auto d-block socials"
-								src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"
-								alt="github"></a>
-					</div>
-				</div>
+							<div class="col-6 col-md-4">
+								<a href="https://www.facebook.com/kushal.pythonist" target="_blank" rel="noopener"><img
+										class="img mx-auto d-block socials"
+										src="https://img.shields.io/badge/Facebook-1DA1F2?style=for-the-badge&logo=facebook&logoColor=white"
+										alt="facebook"></a>
+							</div>
+							<div class="col-6 col-md-4">
+								<a href="https://www.instagram.com/pythonist__" target="_blank" rel="noopener"><img
+										class="img mx-auto d-block socials"
+										src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"
+										alt="instagram"></a>
+							</div>
+							<div class="col-6 col-md-4">
+								<a href="https://twitter.com/HYPEPythonist" target="_blank" rel="noopener"><img
+										class="img mx-auto d-block socials"
+										src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white"
+										alt="twitter"></a>
+							</div>
+							<div class="col-6 col-md-4">
+								<a href="https://github.com/kuxall" target="_blank" rel="noopener"><img
+										class="img mx-auto d-block socials"
+										src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"
+										alt="github"></a>
+							</div>
+						</div>
 
-				<footer class="footer">
-					Made with &#10084
-				</footer>
+						<footer class="footer">
+							Made with &#10084
+						</footer>
 
-			</div>
+					</div>
 
 
 	</body>

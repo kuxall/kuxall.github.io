@@ -445,3 +445,8 @@ a.nav-link:active {
 .CaiApp .CaiAppExpander {
   box-shadow: none !important;
 }
+.code-container {
+  width: 100%;
+  max-width: 600px;
+  overflow-x: auto;
+} 
