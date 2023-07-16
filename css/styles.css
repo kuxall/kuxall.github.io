@@ -19,9 +19,7 @@ h1 {
   font-size: 4.5rem;
 }
 
-h2 {
-  font-size: 3.5rem;
-}
+
 
 h3 {
   font-size: 2rem;
@@ -468,4 +466,48 @@ a.nav-link:active {
   width: 100%;
   max-width: 600px;
   overflow-x: auto;
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ef5350;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
+.flex-item {
+  flex: 0 0 30%;
+  margin: 10px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tech-table {
+  width: 100%;
+}
+
+.tech-table th,
+.tech-table td {
+  padding: 8px;
+  text-align: center;
+}
+
+.tech-table th {
+  background-color: #ef5350;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .flex-item {
+    flex: 0 0 80%;
+  }
 }
