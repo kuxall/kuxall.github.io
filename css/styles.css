@@ -19,9 +19,7 @@ h1 {
   font-size: 4.5rem;
 }
 
-h2 {
-  font-size: 3.5rem;
-}
+
 
 h3 {
   font-size: 2rem;
@@ -80,6 +78,7 @@ a.nav-link:active {
 }
 
 @media (max-width: 419px) {
+
   .RecastApp .RecastAppChat.open,
   .CaiApp .CaiAppChat.open {
     height: 100vh;
@@ -138,12 +137,15 @@ a.nav-link:active {
 .highlight-red {
   color: #ef5350;
 }
+
 .highlight-orange {
   color: rgba(253, 149, 90, 0.8);
 }
+
 .highlight-pink {
   color: blueviolet;
 }
+
 .highlight-blue {
   color: #6ac4ff;
 }
@@ -154,14 +156,17 @@ a.nav-link:active {
   line-height: 5rem;
   height: 5rem;
 }
+
 .carousel .pre {
   position: absolute;
 }
+
 .carousel .change_outer {
   bottom: 0;
   height: 5rem;
   overflow: hidden;
 }
+
 .carousel .change_outer .change_inner {
   animation: rotate 8s ease-in-out infinite;
 }
@@ -172,22 +177,27 @@ a.nav-link:active {
 }
 
 @keyframes rotate {
+
   0%,
   20% {
     transform: translateY(0);
   }
+
   25%,
   45% {
     transform: translateY(-5.85rem);
   }
+
   50%,
   70% {
     transform: translateY(-11.75rem);
   }
+
   75%,
   95% {
     transform: translateY(-17.6rem);
   }
+
   100% {
     transform: translateY(-23.5rem);
   }
@@ -197,22 +207,27 @@ a.nav-link:active {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
+
 @-moz-keyframes blink {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
+
 @keyframes blink {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -414,6 +429,7 @@ a.nav-link:active {
   a {
     color: #fff;
   }
+
   .navbar {
     background-color: #303134;
   }
@@ -444,4 +460,54 @@ a.nav-link:active {
 .RecastApp .RecastAppExpander,
 .CaiApp .CaiAppExpander {
   box-shadow: none !important;
+}
+
+.code-container {
+  width: 100%;
+  max-width: 600px;
+  overflow-x: auto;
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ef5350;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
+.flex-item {
+  flex: 0 0 30%;
+  margin: 10px;
+  padding: 20px;
+  background-color: #303134;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tech-table {
+  width: 100%;
+}
+
+.tech-table th,
+.tech-table td {
+  padding: 8px;
+  text-align: center;
+}
+
+.tech-table th {
+  background-color: #ef5350;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .flex-item {
+    flex: 0 0 80%;
+  }
 }
