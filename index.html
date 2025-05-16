@@ -4,16 +4,17 @@
 
 	<head>
 		<meta charset="utf-8" />
-		<title>Pythonist</title>
-		<meta name="description" content="Portfolio" />
-		<meta name="author" content="Pythonist" />
+		<title>Kushal - AI & ML Engineer</title>
+		<meta name="description"
+			content="Portfolio of Kushal - AI & ML Engineer specializing in NLP, LLMs, and Deep Learning" />
+		<meta name="author" content="Kushal" />
 		<link rel="shortcut icon" type="image/jpg" href="assets/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-			crossorigin="anonymous" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 		<link rel="stylesheet" href="css/styles.css" />
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet">
 
 		<!-- <meta property="og:title" content="Pythonist" />
 		<meta property="og:site_name" content="https://Pythonist.github.io/Portfolio/" />
@@ -34,545 +35,420 @@
 	</head>
 
 	<body>
-		<nav class="navbar navbar-expand-sm fixed-top" id="navbar">
+		<!-- Navigation -->
+		<nav class="navbar navbar-expand-lg fixed-top" id="navbar">
 			<div class="container">
-				<a class="navbar-brand" href="#"><code>< Pythonist /></code></a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-					aria-label="Toggle navigation">
+				<a class="navbar-brand" href="#">
+					<span class="brand-text">Kushal</span>
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav">
-						<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-							<a class="nav-link" href="#">home</a>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="#home">Home</a>
 						</li>
-						<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-							<a class="nav-link" href="#about">about</a>
+						<li class="nav-item">
+							<a class="nav-link" href="#about">About</a>
 						</li>
-						<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-							<a class="nav-link" href="#projects">projects</a>
+						<li class="nav-item">
+							<a class="nav-link" href="#projects">Projects</a>
 						</li>
-						<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-							<a class="nav-link" href="#background">background</a>
+						<li class="nav-item">
+							<a class="nav-link" href="#experience">Experience</a>
 						</li>
-						<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-							<a class="nav-link" href="#certificates">certifications</a>
+						<li class="nav-item">
+							<a class="nav-link" href="#skills">Skills</a>
 						</li>
-						<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-							<a class="nav-link" href="#tech-stacks">techstacks</a>
+						<li class="nav-item">
+							<a class="nav-link" href="#contact">Contact</a>
 						</li>
-						<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-							<a class="nav-link" href="#contact">contact</a>
-						</li <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-						<a class="nav-link"
-							href="https://drive.google.com/file/d/15Q_Fpz-s7dc_6ODvm0qJamzDUWJ2PnRZ/view?usp=sharing"
-							target="_blank">resume</a>
+						<li class="nav-item">
+							<a class="nav-link resume-btn"
+								href="https://drive.google.com/file/d/15Q_Fpz-s7dc_6ODvm0qJamzDUWJ2PnRZ/view?usp=sharing"
+								target="_blank">
+								Resume
+							</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 
-		<div class="container">
-			<div class="row padding">
-				<h1>Hello.</h1>
-			</div>
-
-			<div class="row">
-				<div class="col-md-auto">
-					<h1>I am</h1>
+		<!-- Hero Section -->
+		<section id="home" class="hero-section hero-modern">
+			<div class="container">
+				<div class="hero-modern-content">
+					<h1 class="hero-modern-title">Hello, I'm <span class="hero-highlight">Kushal</span></h1>
+					<div class="hero-modern-roles">
+						<span class="static-text">I'm a</span>
+						<span class="animated-role"><span id="animated-role-text">AI Engineer</span></span>
+					</div>
+					<p class="hero-modern-description">
+						Aspiring Machine Learning Engineer passionate about building scalable, real-world AI solutions.
+					</p>
+					<div class="hero-modern-cta">
+						<a href="#projects" class="btn btn-primary btn-lg">View My Work</a>
+						<a href="#contact" class="btn btn-outline btn-lg">Get in Touch</a>
+					</div>
 				</div>
-				<div class="col-md-auto">
-					<div class="carousel">
-						<div class="change_outer">
-							<div class="change_inner">
-								<h1 class="element" style="color: #ef5350">Kushal</h1>
-								<!-- <h1 class="element">Developer</h1> -->
-								<h1 class="element">AI Enthusiasts</h1>
-								<h1 class="element">LLM Practitioner</h1>
-								<h1 class="element">Quick Learner</h1>
+			</div>
+		</section>
+
+		<!-- About Section -->
+		<section id="about" class="section">
+			<div class="container">
+				<h2 class="section-title">About Me</h2>
+				<div class="row align-items-center">
+					<div class="col-lg-6">
+						<div class="about-image">
+							<img src="./assets/hi.png" alt="Kushal Raj Sharma" class="img-fluid">
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="about-content">
+							<p class="about-text">
+								Aspiring Machine Learning Engineer with hands-on experience in NLP, computer vision, and
+								full-stack AI application development. Proficient in Python, PyTorch, spaCy,
+								scikit-learn, and LangChain, with a passion for building scalable, real-world AI
+								solutions. Actively seeking entry-level ML and Full Stack opportunities to apply
+								technical expertise and contribute to impactful projects.
+							</p>
+							<div class="about-details mb-3">
+								<div class="detail-item">
+									<i class="fas fa-map-marker-alt"></i>
+									<span>Mississauga, ON, Canada</span>
+								</div>
+								<div class="detail-item">
+									<i class="fas fa-envelope"></i>
+									<span>c0940005@mylambton.ca</span>
+								</div>
+								<div class="detail-item">
+									<i class="fas fa-phone"></i>
+									<span>+1 (437) 933-7042</span>
+								</div>
+								<div class="detail-item">
+									<i class="fab fa-linkedin"></i>
+									<a href="https://linkedin.com/in/pythonistkushal"
+										target="_blank">linkedin.com/in/pythonistkushal</a>
+								</div>
+								<div class="detail-item">
+									<i class="fab fa-github"></i>
+									<a href="https://github.com/kuxall" target="_blank">github.com/kuxall</a>
+								</div>
+							</div>
+							<a href="assets/SimplifyKushalRajSharmaResume.pdf" class="btn btn-primary" download>Download
+								Resume
+								<i class="fas fa-download"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="section-divider"></div>
+
+		<!-- Projects Section -->
+		<section id="projects" class="section bg-light">
+			<div class="container">
+				<h2 class="section-title">Projects</h2>
+				<div class="row g-4 modern-projects">
+					<div class="col-md-6 col-lg-4">
+						<div class="modern-project-card">
+							<div class="modern-project-content">
+								<h3>Digital Advertisement Classification</h3>
+								<p>Streamlit-based web app for classifying digital ads into multiple categories using
+									machine learning. Used TfidfVectorizer, OneVsRestClassifier, and scikit-learn for
+									multi-label classification and real-time inference.</p>
+								<div class="modern-project-tags">
+									<span class="badge bg-gradient-primary">Streamlit</span>
+									<span class="badge bg-gradient-info">scikit-learn</span>
+									<span class="badge bg-gradient-success">ML</span>
+								</div>
+								<a href="#" class="modern-project-btn" tabindex="0">View Demo <i
+										class="fas fa-arrow-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="modern-project-card">
+							<div class="modern-project-content">
+								<h3>EnhanceFund – Peer-to-Peer Lending Platform</h3>
+								<p>Full-stack platform with role-based access for borrowers, investors, and staff using
+									Django and REST APIs. Integrated Stripe for payments, automated workflows, and
+									real-time investment management.</p>
+								<div class="modern-project-tags">
+									<span class="badge bg-gradient-primary">Django</span>
+									<span class="badge bg-gradient-warning">REST API</span>
+									<span class="badge bg-gradient-danger">Stripe</span>
+								</div>
+								<a href="#" class="modern-project-btn" tabindex="0">View Demo <i
+										class="fas fa-arrow-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="modern-project-card">
+							<div class="modern-project-content">
+								<h3>Buynery – Grocery Shopping</h3>
+								<p>Developed a secure Express.js backend and interactive frontend with Bootstrap,
+									jQuery, and Swiper. Implemented authentication, dynamic content, and user-friendly
+									features for a seamless shopping experience.</p>
+								<div class="modern-project-tags">
+									<span class="badge bg-gradient-primary">Express.js</span>
+									<span class="badge bg-gradient-info">Bootstrap</span>
+									<span class="badge bg-gradient-success">jQuery</span>
+								</div>
+								<a href="#" class="modern-project-btn" tabindex="0">View Demo <i
+										class="fas fa-arrow-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="modern-project-card">
+							<div class="modern-project-content">
+								<h3>Plant Disease Detection</h3>
+								<p>Web-based AI system to detect plant diseases from leaf images using a CNN built with
+									PyTorch. Integrated real-time prediction and a lightweight Flask web app for
+									user-friendly diagnosis.</p>
+								<div class="modern-project-tags">
+									<span class="badge bg-gradient-primary">PyTorch</span>
+									<span class="badge bg-gradient-info">Flask</span>
+									<span class="badge bg-gradient-success">CNN</span>
+								</div>
+								<a href="#" class="modern-project-btn" tabindex="0">View Demo <i
+										class="fas fa-arrow-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="modern-project-card">
+							<div class="modern-project-content">
+								<h3>IGBot</h3>
+								<p>Python tool to scrape Instagram profiles by city, automate DMs using OpenAI API and
+									Instabot, and manage credentials securely with dotenv. Documented for easy
+									deployment and maintenance.</p>
+								<div class="modern-project-tags">
+									<span class="badge bg-gradient-primary">Python</span>
+									<span class="badge bg-gradient-info">OpenAI</span>
+									<span class="badge bg-gradient-success">Instabot</span>
+								</div>
+								<a href="#" class="modern-project-btn" tabindex="0">View Demo <i
+										class="fas fa-arrow-right"></i></a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+		</section>
 
-			<!-- <div class="box"> -->
-			<!-- <pre id="typewriter" class="text"> -->
-			<!-- <span class="highlight-red">const</span> name = <span class="highlight-blue">'Kushal'</span>;
-<span class="highlight-orange">Developer</span> dev = <span class="highlight-red">new</span> <span class="highlight-orange">Developer</span>(name); -->
+		<div class="section-divider"></div>
 
-			<!-- <span class="highlight-red">while</span>(dev.<span class="highlight-pink">isCoding</span>()){
-	dev.<span class="highlight-pink">listenToMusic</span>();
-	dev.<span class="highlight-pink">openStackOverFlow</span>(); -->
-			<!-- } </pre> -->
-			<!-- </div> -->
-
-
-			<div id="API"></div>
-
-			<div id="about" class="row padding-top">
-				<h1>About</h1>
-			</div>
-
-			<div class="row">
-				<div class="col-md">
-					<img style="height: 20rem" src="./assets/hi.png" class="img mx-auto d-block" alt="Pythonist" />
-				</div>
-
-				<div class="col-md d-flex justify-content-center padding-on-md">
-
-					<pre class="text">
-<span class="highlight-red"> Programmer = {
-	<span class="highlight-blue">name</span>: 'Kushal,
-	<span class="highlight-blue">location</span>: 'Nepal',
-	<span class="highlight-blue">isCoding</span>: 'true',
-	<span class="highlight-blue">hobbies</span>: ['Coding',
-		'Listening to Music',
-		'Watching Movies',
-		'Collecting Data',
-		'Scrolling LinkedIn']}
-</pre>
-
+		<!-- Education Section -->
+		<section id="education" class="section bg-light">
+			<div class="container">
+				<h2 class="section-title">Education</h2>
+				<div class="row g-4 edu-cards">
+					<div class="col-md-6">
+						<div class="edu-card-modern">
+							<div class="edu-card-header">
+								<i class="fas fa-graduation-cap edu-icon"></i>
+								<div>
+									<h4>Lambton College</h4>
+									<span class="edu-degree">Full Stack Software Development</span>
+									<span class="edu-date">2024-2026</span>
+								</div>
+							</div>
+							<p class="edu-desc">Building web and software apps from start to finish.</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="edu-card-modern">
+							<div class="edu-card-header">
+								<i class="fas fa-university edu-icon"></i>
+								<div>
+									<h4>Nepathya College</h4>
+									<span class="edu-degree">BSc Computer Science</span>
+									<span class="edu-date">2017-2021</span>
+								</div>
+							</div>
+							<p class="edu-desc">Core computer science and problem-solving.</p>
+						</div>
+					</div>
 				</div>
 			</div>
+		</section>
 
-			<div id="projects" class="row padding-top">
-				<h1>Projects</h1>
+		<div class="section-divider"></div>
+
+		<!-- Experience Section -->
+		<section id="experience" class="section">
+			<div class="container">
+				<h2 class="section-title">Experience</h2>
+				<div class="row g-4 experience-cards">
+					<div class="col-md-6 col-lg-4">
+						<div class="exp-card">
+							<div class="exp-card-header">
+								<i class="fas fa-database exp-icon"></i>
+								<div>
+									<h4>Data Analyst</h4>
+									<span class="exp-company">Omdena (Remote)</span>
+									<span class="exp-date">Jul 2023 - Sep 2023</span>
+								</div>
+							</div>
+							<ul class="exp-list">
+								<li>Collected and prepared Nepali and English data from different sources.</li>
+								<li>Created charts and reports to show data patterns and issues.</li>
+								<li>Helped the team understand key findings and shared summaries.</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="exp-card">
+							<div class="exp-card-header">
+								<i class="fas fa-brain exp-icon"></i>
+								<div>
+									<h4>AI Lead</h4>
+									<span class="exp-company">Sherpa.Codes (Butwal, Nepal)</span>
+									<span class="exp-date">Sep 2021 - May 2023</span>
+								</div>
+							</div>
+							<ul class="exp-list">
+								<li>Managed a team of 20+ people to label and organize data for projects.</li>
+								<li>Worked with others to decide what data was needed for better results.</li>
+								<li>Used powerful computers to speed up work and test ideas quickly.</li>
+								<li>Helped students and new team members learn about AI and problem-solving.</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-4">
+						<div class="exp-card">
+							<div class="exp-card-header">
+								<i class="fas fa-robot exp-icon"></i>
+								<div>
+									<h4>AI Intern</h4>
+									<span class="exp-company">National Innovation Center (Kathmandu, Nepal)</span>
+									<span class="exp-date">May 2021 - Aug 2021</span>
+								</div>
+							</div>
+							<ul class="exp-list">
+								<li>Built a tool to identify plant diseases from images with high accuracy.</li>
+								<li>Read and summarized research to find new ways to improve results.</li>
+								<li>Made the system faster and easier to use for others.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
+		</section>
 
-			<div class="flex-col-2" class="githubprojects">
+		<div class="section-divider"></div>
 
-				<div class="flex-card">
-					<a href="https://github.com/kuxall/pdfGPT" target="_blank" rel="noopener">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">pdfGPT</h5>
-								<h6 class="card-subtitle mb-2 text-muted"> Streamlit</h6>
-								<center> <img src="./assets/pdfgpt.png" alt="pdfGPT" /> </center>
-								<p class="card-text">This repository allows the user to upload the pdf files. Ask the
-									user to input the questions and it will instantly throw the answers based in the
-									pdf.</p>
-							</div>
-						</div>
-					</a>
+		<!-- Skills Section -->
+		<section id="skills" class="section">
+			<div class="container">
+				<h2 class="section-title">Core Skills</h2>
+				<div class="skills-condensed-grid">
+					<div class="skill-condensed-category">
+						<h4><i class="fas fa-code"></i> Programming</h4>
+						<ul>
+							<li>Python</li>
+							<li>JavaScript</li>
+							<li>SQL</li>
+						</ul>
+					</div>
+					<div class="skill-condensed-category">
+						<h4><i class="fas fa-database"></i> Data Science</h4>
+						<ul>
+							<li>Pandas</li>
+							<li>NumPy</li>
+							<li>scikit-learn</li>
+							<li>Jupyter</li>
+							<li>Data Analysis</li>
+							<li>Visualization</li>
+						</ul>
+					</div>
+					<div class="skill-condensed-category">
+						<h4><i class="fas fa-brain"></i> AI & ML Frameworks</h4>
+						<ul>
+							<li>PyTorch</li>
+							<li>spaCy</li>
+							<li>LangChain</li>
+							<li>OpenCV</li>
+							<li>LLMs</li>
+							<li>OpenAI</li>
+						</ul>
+					</div>
+					<div class="skill-condensed-category">
+						<h4><i class="fas fa-globe"></i> Web & Cloud</h4>
+						<ul>
+							<li>Flask</li>
+							<li>Django</li>
+							<li>Node.js</li>
+							<li>Bootstrap</li>
+							<li>jQuery</li>
+							<li>Streamlit</li>
+							<li>REST APIs</li>
+							<li>Stripe</li>
+							<li>postgreSQL</li>
+						</ul>
+					</div>
+					<div class="skill-condensed-category">
+						<h4><i class="fas fa-tools"></i> Tools</h4>
+						<ul>
+							<li>Git & GitHub</li>
+							<li>Celery</li>
+							<li>google generative ai</li>
+							<li>PIL</li>
+						</ul>
+					</div>
 				</div>
-
-				<div class="flex-card">
-					<a href="https://github.com/kuxall/DocumentBasedQALangChain" target="_blank" rel="noopener">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">Document Based QA</h5>
-								<h6 class="card-subtitle mb-2 text-muted"> LangChain</h6>
-								<center> <img src="./assets/unstructured.png" alt="Document Based QA" /> </center>
-								<p class="card-text">Use Unstructured files and chat with your Document.
-
-								</p>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="flex-card">
-					<a href="https://github.com/kuxall/ner_app" target="_blank" rel="noopener">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">NER</h5>
-								<h6 class="card-subtitle mb-2 text-muted"> Spacy</h6>
-								<center> <img src="./assets/ner.png" alt="NER" /> </center>
-								<p class="card-text"> Annotated the resume, documents using prodigy. Trained the models
-									and inferenced the model using spacy. It extracts the entities from the documents
-									the user uploads.
-								</p>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="flex-card">
-					<a href="https://github.com/kuxall/igbot" target="_blank" rel="noopener">
-
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">IGBot</h5>
-								<h6 class="card-subtitle mb-2 text-muted"> instabot </h6>
-								<center> <img src="./assets/instabot.png" alt="Instagram DM Sender" /> </center>
-								<p class="card-text">The tool scrapes Instagram profiles and IGIDs based on the
-									keywords,
-									utilizes OpenAI for message generation, collects responses from scraped profiles,
-									and sends various marketing messages to them.</p>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="flex-card">
-					<a href="https://github.com/kuxall/Digital-Advertisement-Classification" target="_blank"
-						rel="noopener">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">Digital Advertisement Classification</h5>
-								<h6 class="card-subtitle mb-2 text-muted"> TF-IDF</h6>
-								<center> <img src="./assets/digi.png" alt="Digital Advertisement Classification" />
-								</center>
-								<p class="card-text">Classify the digital ad data from various sources.</p>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="flex-card">
-					<a href="https://huggingface.co/spaces/pythonist/KushalQuestionAnsweringModel" target="_blank"
-						rel="noopener">
-
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">Question Answering System</h5>
-								<h6 class="card-subtitle mb-2 text-muted"> Transformers </h6>
-								<center> <img src="./assets/qa.png" alt="Question Answering " /> </center>
-								<p class="card-text">This system asks the context and the questions from the user and
-									generates the answer for you based on the context. Happy Question Answering</p>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="flex-card">
-					<a href="https://github.com/kuxall/BlogGemini" target="_blank" rel="noopener">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">Content Generation using Generative AI</h5>
-								<h6 class="card-subtitle mb-2 text-muted"> Gemini </h6>
-								<center> <img src="./assets/genai.png" alt="Blog Generation" /> </center>
-								<p class="card-text">This Streamlit app allows users to generate content using Google
-									Generative AI models. Users can enter text prompts to generate content, upload
-									images to generate descriptions or blog posts.</p>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="flex-card">
-					<a href="https://github.com/kuxall/SumTran" target="_blank" rel="noopener">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">Utils App</h5>
-								<h6 class="card-subtitle mb-2 text-muted"> Streamlit </h6>
-								<center> <img src="./assets/utils.png" alt="Utilities Apps" /> </center>
-								<p class="card-text">This app auto detect the input text and translate into different
-									languages, summarize the input text, and convert the text into audio format.Can be
-									used as goto app.</p>
-							</div>
-						</div>
-					</a>
-				</div>
-
 			</div>
+		</section>
 
-			<div id="background" class="row padding-top">
-				<h1>Background</h1>
-			</div>
+		<div class="section-divider"></div>
 
-			<div class="row">
-
-				<h3>Experience</h3>
-
-				<ul class="timeline">
-					<li class="event" data-date="Jul 2023 - Sep 2023">
-						<h3>Data Analyst</h3>
-						<p class="text-muted">Omdena</p>
-					</li>
-					<li class="event" data-date="Sep 2021 - May 2023">
-						<h3>AI Lead</h3>
-						<p class="text-muted">Sherpa.Codes</p>
-					</li>
-					<li class="event" data-date="May 2021 - Aug 2021">
-						<h3>AI Intern</h3>
-						<p class="text-muted">National Innovation Center(NIC) Nepal</p>
-					</li>
+		<!-- Awards Section -->
+		<section id="awards" class="section bg-light">
+			<div class="container">
+				<h2 class="section-title">Awards & Achievements</h2>
+				<ul>
+					<li>Top 5 finalist of STARTUP AND IDEA FEST 2022 Lumbini Province, awarded by Hon'ble Minister Tilak
+						Sharma, Ministry of Internal Affairs of Lumbini Province.</li>
 				</ul>
-
-				<h3>Education</h3>
-
-				<ul class="timeline">
-					<li class="event" data-date="2024">
-						<h3>Post Graduate (Full Stack Software Development)</h3>
-						<p class="text-muted">Lambton College</p>
-					</li>
-					<li class="event" data-date="2021">
-						<h3>BSc.CSIT (Computer Science)</h3>
-						<p class="text-muted">Tribhuwan University</p>
-					</li>
-					<li class="event" data-date="2016">
-						<h3>Intermediate Level (Science)</h3>
-						<p class="text-muted">Paramount College</p>
-					</li>
-					<li class="event" data-date="2014">
-						<h3>SLC (School Level)</h3>
-						<p class="text-muted">Kunwarwarti Eng. Boarding High School</p>
-					</li>
-				</ul>
-
 			</div>
+		</section>
 
-			<div id="certificates" class="row padding-top">
-				<h1>Certifications</h1>
-			</div>
+		<div class="section-divider"></div>
 
-			<div class="flex-col-2">
-
-				<div class="flex-card">
-					<a href="https://drive.google.com/file/d/1YN66gCgR1noW9ACrx9-mb86Sy0sT82A8/view?usp=sharing"
-						target="_blank" rel="noopener">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">Microsoft Azure AI Fundamentals: Get
-									started with AI</h5>
-								<h6 class="card-subtitle mb-2 text-muted"> Microsoft</h6>
-								<p class="card-text">Issued Apr 2022 | No Expiration
-									Date</p>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="flex-card">
-					<a href="https://drive.google.com/file/d/15HyRaXuveQP0mB--SBrP4qgJb16jy0wI/view?usp=sharing"
-						target="_blank" rel="noopener">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">Chat LLMs and Web Agents Seminar
-								</h5>
-								<h6 class="card-subtitle mb-2 text-muted">Abacus.AI</h6>
-								<p class="card-text">Issued Jan 2024 | No Expiration Date</p>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="flex-card">
-					<a href="https://drive.google.com/file/d/1j8VXNTwGXT1razKVM1t7Mnkpg-pkKhN9/view?usp=drive_link	"
-						target="_blank" rel="noopener">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">Understand Data Science with Machine Learning
-								</h5>
-								<h6 class="card-subtitle mb-2 text-muted">Microsoft</h6>
-								<p class="card-text white">Issued May 2022 | No Expiration Date</p>
-							</div>
-						</div>
-				</div>
-
-				<div class="flex-card">
-					<a href="https://drive.google.com/file/d/1JZ3xYcwl_kRZ5nWIg9uWVkaPyKpP8-wM/view?usp=drive_link"
-						target="_blank" rel="noopener">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">Microsoft Azure AI Fundamentals: Get
-									Started with NLP</h5>
-								<h6 class="card-subtitle mb-2 text-muted">Microsoft</h6>
-								<p class="card-text">Issued Apr 2022 | No Expiration Date</p>
-							</div>
-						</div>
-					</a>
-				</div>
-
-			</div>
-
-			<div id="tech-stacks" class="row padding-top">
-				<h1>Tech-Stacks</h1>
-			</div>
-
-			<div class="flex-container">
-				<div class="flex-item">
-					<h3>Languages:</h3>
-					<table class="tech-table">
-						<tr>
-							<th>Index</th>
-							<th>Languages</th>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Python</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>Deep Learning</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Machine Learning</td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>Natural Language Processing</td>
-						</tr>
-					</table>
-				</div>
-				<div class="flex-item">
-					<h3>Frameworks:</h3>
-					<table class="tech-table">
-						<tr>
-							<th>Index</th>
-							<th>Frameworks</th>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Scrapy</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Pytorch</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>Streamlit</td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>Tensorflow</td>
-						</tr>
-					</table>
-				</div>
-				<div class="flex-item">
-					<h3>Modules:</h3>
-					<table class="tech-table">
-						<tr>
-							<th>Index</th>
-							<th>Modules</th>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>LLMs</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Spacy</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>LangChain</td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>Transformers</td>
-						</tr>
-					</table>
-				</div>
-				<div class="flex-item">
-					<h3>Annotation Tools:</h3>
-					<table class="tech-table">
-						<tr>
-							<th>Index</th>
-							<th>Tool</th>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>UBIAI</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Prodigy</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>Label-Studio</td>
-						</tr>
-					</table>
-				</div>
-				<div class="flex-item">
-					<h3>ProjectManagement:</h3>
-					<table class="tech-table">
-						<tr>
-							<th>Index</th>
-							<th>Tool</th>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Slack</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Click-Up</td>
-						</tr>
-					</table>
+		<!-- Contact Section -->
+		<section id="contact" class="section">
+			<div class="container">
+				<h2 class="section-title">Get in Touch</h2>
+				<div class="contact-content">
+					<div class="social-links">
+						<a href="mailto:c0940005@mylambton.ca" class="social-link"><i class="fas fa-envelope"></i></a>
+						<a href="https://www.linkedin.com/in/pythonistkushal" target="_blank" class="social-link"><i
+								class="fab fa-linkedin"></i></a>
+						<a href="https://github.com/kuxall" target="_blank" class="social-link"><i
+								class="fab fa-github"></i></a>
+					</div>
 				</div>
 			</div>
-			<div id="contact" class="row padding-top">
-				<h1>Contact</h1>
+		</section>
+
+		<footer class="footer">
+			<div class="container">
+				<p>© 2024 Kushal. All rights reserved.</p>
 			</div>
-			<div class="row">
-				<div class="col-12">
-					<table class="table text-center">
-						<tr>
-							<td>
-								<a class="libutton"
-									href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=pythonistkushal"
-									target="_blank" rel="noopener">
-									<img class="img mx-auto d-block socials"
-										src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"
-										alt="linkedin">
-								</a>
-							</td>
-							<td>
-								<a href="https://www.facebook.com/kushal.pythonist" target="_blank" rel="noopener">
-									<img class="img mx-auto d-block socials"
-										src="https://img.shields.io/badge/Facebook-1DA1F2?style=for-the-badge&logo=facebook&logoColor=white"
-										alt="facebook">
-								</a>
-							</td>
-							<td>
-								<a href="https://www.instagram.com/pythonist__" target="_blank" rel="noopener">
-									<img class="img mx-auto d-block socials"
-										src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"
-										alt="instagram">
-								</a>
-							</td>
-							<td>
-								<a href="https://twitter.com/HYPEPythonist" target="_blank" rel="noopener">
-									<img class="img mx-auto d-block socials"
-										src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white"
-										alt="twitter">
-								</a>
-							</td>
-							<td>
-								<a href="https://github.com/kuxall" target="_blank" rel="noopener">
-									<img class="img mx-auto d-block socials"
-										src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"
-										alt="github">
-								</a>
-							</td>
-							<td>
-								<a href="https://gitlab.com/kuxall" target="_blank" rel="noopener">
-									<img class="img mx-auto d-block socials"
-										src="https://img.shields.io/badge/GitLab-330F63?style=for-the-badge&logo=gitlab&logoColor=white"
-										alt="gitlab">
-								</a>
-							</td>
-							<td>
-								<a href="https://huggingface.co/pythonist" target="_blank" rel="noopener">
-									<img class="img mx-auto d-block socials"
-										src="https://img.shields.io/badge/Hugging%20Face-563D7C?style=for-the-badge&logo=huggingface&logoColor=white"
-										alt="huggingface">
-								</a>
-							</td>
-						</tr>
-					</table>
-				</div>
-			</div>
+		</footer>
 
 
 
-			<footer class="footer">
-				Made by <a href="https://github.com/schmelto"> schmelto</a>, used by <a
-					href="https://github.com/kuxall">Pythonist</a>
-			</footer>
-
-		</div>
-
-
+		<!-- Bootstrap Bundle with Popper -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="js/main.js"></script>
 	</body>
 
 </html>
