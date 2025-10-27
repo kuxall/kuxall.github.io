@@ -28,3 +28,6 @@ pnpm-debug.log*
 
 # Astro
 .astro/
+
+# Old site backup
+old-site/
