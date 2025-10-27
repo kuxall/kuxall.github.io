@@ -1,0 +1,68 @@
+---
+import type { SkillData } from '../types/github';
+
+interface Props {
+  languageSkills: SkillData[];
+  topicSkills: SkillData[];
+}
+
+const { languageSkills, topicSkills } = Astro.props;
+
+const topLanguages = languageSkills.slice(0, 6);
+const topTopics = topicSkills.slice(0, 20);
+---
+
+<section id="skills" class="section bg-gray-50 dark:bg-gray-800/50">
+  <div class="container">
+    <h2 class="section-title">Skills & Technologies</h2>
+    
+    <div class="max-w-6xl mx-auto">
+      <!-- Language Chart -->
+      <div class="card p-8 mb-8">
+        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+          Primary Languages
+        </h3>
+        <div class="space-y-4">
+          {topLanguages.map((lang) => (
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-medium text-gray-700 dark:text-gray-300">
+                  {lang.name}
+                </span>
+                <span class="text-sm text-gray-500 dark:text-gray-400">
+                  {lang.count} {lang.count === 1 ? 'repository' : 'repositories'}
+                </span>
+              </div>
+              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                <div
+                  class="bg-primary-600 dark:bg-primary-500 h-2.5 rounded-full transition-all duration-500"
+                  style={`width: ${lang.percentage}%`}
+                ></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <!-- Skills Cloud -->
+      <div class="card p-8">
+        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+          Technologies & Tools
+        </h3>
+        <div class="flex flex-wrap gap-3">
+          {topTopics.map((skill) => (
+            <span
+              class="badge badge-primary px-4 py-2 text-sm font-medium hover:scale-110 transition-transform cursor-default"
+              style={`font-size: ${Math.max(0.875, Math.min(1.25, skill.count / 2))}rem`}
+            >
+              {skill.name}
+              <span class="ml-2 text-xs opacity-75">
+                {skill.count}
+              </span>
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

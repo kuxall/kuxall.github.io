@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Projects from '../components/Projects.astro';
+import Skills from '../components/Skills.astro';
+import Activity from '../components/Activity.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../../site.config';
+import {
+  fetchGitHubUser,
+  fetchUserRepos,
+  getFeaturedProjects,
+  getLanguageStats,
+  getSkillsFromTopics,
+  generateTagline,
+  generateAboutParagraph,
+} from '../lib/github';
+
+// Fetch all data from GitHub
+const username = siteConfig.githubUsername;
+const user = await fetchGitHubUser(username);
+const repos = await fetchUserRepos(username);
+const featuredProjects = await getFeaturedProjects(username);
+const languageSkills = await getLanguageStats(repos);
+const topicSkills = await getSkillsFromTopics(repos);
+
+// Generate content
+const tagline = generateTagline(user, languageSkills.slice(0, 3).map(s => s.name));
+const aboutParagraph = generateAboutParagraph(user, languageSkills);
+
+// Calculate stats
+const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+const totalForks = repos.reduce((sum, repo) => sum + repo.forks_count, 0);
+
+// SEO
+const title = `${user.name || user.login} - Developer Portfolio`;
+const description = user.bio || tagline;
+---
+
+<BaseLayout title={title} description={description} keywords={siteConfig.seo.keywords}>
+  <Navbar />
+  <main>
+    <Hero
+      name={user.name || user.login}
+      tagline={tagline}
+      avatar={user.avatar_url}
+    />
+    <About
+      about={aboutParagraph}
+      location={user.location}
+      company={user.company}
+      email={user.email}
+    />
+    <Projects projects={featuredProjects} />
+    <Skills
+      languageSkills={languageSkills}
+      topicSkills={topicSkills}
+    />
+    <Activity
+      totalRepos={repos.length}
+      totalStars={totalStars}
+      publicRepos={user.public_repos}
+    />
+    <Contact
+      email={user.email}
+      githubUrl={`https://github.com/${username}`}
+    />
+  </main>
+  <Footer />
+</BaseLayout>
