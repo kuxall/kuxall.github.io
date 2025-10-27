@@ -1,0 +1,74 @@
+---
+interface Props {
+  totalRepos: number;
+  totalStars: number;
+  publicRepos: number;
+}
+
+const { totalRepos, totalStars, publicRepos } = Astro.props;
+---
+
+<section id="activity" class="section">
+  <div class="container">
+    <h2 class="section-title">Activity & Stats</h2>
+    
+    <div class="max-w-6xl mx-auto">
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="card p-6 text-center">
+          <div class="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2">
+            {publicRepos}
+          </div>
+          <div class="text-gray-600 dark:text-gray-400">
+            Public Repositories
+          </div>
+        </div>
+        
+        <div class="card p-6 text-center">
+          <div class="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2">
+            {totalStars}
+          </div>
+          <div class="text-gray-600 dark:text-gray-400">
+            Total Stars
+          </div>
+        </div>
+        
+        <div class="card p-6 text-center">
+          <div class="text-4xl font-bold text-primary-600 dark:text-primary-400 mb-2">
+            {totalRepos}
+          </div>
+          <div class="text-gray-600 dark:text-gray-400">
+            Active Projects
+          </div>
+        </div>
+      </div>
+      
+      <!-- GitHub Stats Card -->
+      <div class="card p-8">
+        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+          Recent Activity
+        </h3>
+        <div class="flex items-center justify-center py-8">
+          <a
+            href="https://github.com/Kuxall"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-primary-600 dark:text-primary-400 hover:underline text-lg"
+          >
+            View detailed activity on GitHub →
+          </a>
+        </div>
+        
+        <!-- GitHub contribution graph (static link) -->
+        <div class="mt-6 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+          <img
+            src="https://ghchart.rshah.org/2563eb/Kuxall"
+            alt="GitHub Contribution Chart"
+            class="w-full"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
