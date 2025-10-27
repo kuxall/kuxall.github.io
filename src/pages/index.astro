@@ -3,8 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
+import Experience from '../components/Experience.astro';
+import Education from '../components/Education.astro';
 import Projects from '../components/Projects.astro';
 import Skills from '../components/Skills.astro';
+import Awards from '../components/Awards.astro';
 import Activity from '../components/Activity.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
@@ -15,8 +18,6 @@ import {
   getFeaturedProjects,
   getLanguageStats,
   getSkillsFromTopics,
-  generateTagline,
-  generateAboutParagraph,
 } from '../lib/github';
 
 // Fetch all data from GitHub
@@ -28,8 +29,72 @@ const languageSkills = await getLanguageStats(repos);
 const topicSkills = await getSkillsFromTopics(repos);
 
 // Generate content
-const tagline = generateTagline(user, languageSkills.slice(0, 3).map(s => s.name));
-const aboutParagraph = generateAboutParagraph(user, languageSkills);
+const tagline = "Aspiring Machine Learning Engineer with hands-on experience in NLP, computer vision, and full-stack AI application development";
+const aboutParagraph = "Aspiring Machine Learning Engineer with hands-on experience in NLP, computer vision, and full-stack AI application development. Proficient in tools such as Python, PyTorch, spaCy, scikit-learn, and LangChain, with a passion for building scalable, real-world AI solutions. Actively seeking entry-level ML and Full Stack opportunities to apply technical expertise and contribute to impactful projects.";
+
+// Resume data - Professional Experience
+const experiences = [
+  {
+    title: "Data Analyst",
+    company: "Omdena",
+    location: "Remote",
+    period: "July 2023 - September 2023",
+    responsibilities: [
+      "Collected multilingual Nepali and English language datasets from different sources and preprocessed them",
+      "Generated summary statistics and visualizations to identify data distribution and anomalies",
+      "Performed sentiment analysis to detect bias and understand perception",
+      "Summarized key points from exploratory data analysis and presented to group members"
+    ]
+  },
+  {
+    title: "AI Lead",
+    company: "Sherpa.Codes",
+    location: "Butwal, Nepal",
+    period: "September 2021 - May 2023",
+    responsibilities: [
+      "Led a team of 20+ annotators, ensuring quality control and timely completion of data annotation projects, resulting in high-quality labeled datasets for training ML models",
+      "Proficient in data collection (scraping) using Scrapy and text preprocessing with spaCy",
+      "Collaborated with cross-functional teams to prioritize data needs for machine learning models, improving model accuracy and relevance",
+      "Utilized supercomputer resources to optimize efficiency and reduce computation time by 50%, enabling faster experimentation",
+      "Conducted research and implemented findings from various papers to achieve project goals, developing advanced AI models with state-of-the-art performance",
+      "Guided juniors in college to solve problems using Machine Learning"
+    ]
+  },
+  {
+    title: "Artificial Intelligence Intern",
+    company: "National Innovation Center",
+    location: "Kathmandu, Nepal",
+    period: "May 2021 - August 2021",
+    responsibilities: [
+      "Implemented Convolutional Neural Networks (CNN) from scratch for image classification tasks, achieving 90% accuracy on benchmark dataset",
+      "Reviewed and analyzed research papers on Autonomous Self-Supervised Learning, identifying novel techniques that improved model performance by 15%",
+      "Recreated Plant Disease Detection Model using PyTorch, reducing inference time by 30% through model optimization"
+    ]
+  }
+];
+
+// Education data
+const education = [
+  {
+    degree: "Certification, Full Stack Software Development",
+    institution: "Lambton College",
+    period: "May 2024 - December 2025"
+  },
+  {
+    degree: "Bachelor's, Computer Science",
+    institution: "Nepathya College",
+    period: "June 2017 - May 2021"
+  }
+];
+
+// Awards data
+const awards = [
+  {
+    title: "Top 5 Finalist - STARTUP AND IDEA FEST 2022",
+    description: "Awarded as the Top 5 finalist of STARTUP AND IDEA FEST 2022 Lumbini Province by Hon'ble Minister Tilak Sharma, the Ministry of Internal Affairs of Lumbini Province.",
+    year: "2022"
+  }
+];
 
 // Calculate stats
 const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
@@ -37,7 +102,7 @@ const totalForks = repos.reduce((sum, repo) => sum + repo.forks_count, 0);
 
 // SEO
 const title = `${user.name || user.login} - Developer Portfolio`;
-const description = user.bio || tagline;
+const description = tagline;
 ---
 
 <BaseLayout title={title} description={description} keywords={siteConfig.seo.keywords}>
@@ -52,20 +117,26 @@ const description = user.bio || tagline;
       about={aboutParagraph}
       location={user.location}
       company={user.company}
-      email={user.email}
+      email="c0940005@mylambton.ca"
+      phone="+1 (437) 933-7042"
     />
+    <Experience experiences={experiences} />
+    <Education education={education} />
     <Projects projects={featuredProjects} />
     <Skills
       languageSkills={languageSkills}
       topicSkills={topicSkills}
     />
+    <Awards awards={awards} />
     <Activity
       totalRepos={repos.length}
       totalStars={totalStars}
       publicRepos={user.public_repos}
     />
     <Contact
-      email={user.email}
+      email="c0940005@mylambton.ca"
+      phone="+1 (437) 933-7042"
+      linkedinUrl="https://linkedin.com/in/pythonistkushal"
       githubUrl={`https://github.com/${username}`}
     />
   </main>
