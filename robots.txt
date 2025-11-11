@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://kuxall.github.io/sitemap.xml

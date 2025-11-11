@@ -1,0 +1,409 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Resume - Kushal Raj Sharma";
+const description = "Professional resume of Kushal Raj Sharma - AI/ML Engineer & Full-Stack Developer";
+---
+
+<BaseLayout title={title} description={description}>
+  <Navbar />
+  
+  <main class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-20">
+    <div class="container max-w-5xl mx-auto px-4">
+      <!-- Header Section -->
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 border border-gray-200 dark:border-gray-700">
+        <div class="text-center mb-6">
+          <h1 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-purple-600 dark:from-primary-400 dark:to-purple-400 mb-2">
+            KUSHAL RAJ SHARMA
+          </h1>
+          <p class="text-gray-600 dark:text-gray-400 text-lg">Mississauga, ON, Canada</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-4 text-sm">
+          <a href="mailto:kuxall0@gmail.com" class="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            kuxall0@gmail.com
+          </a>
+          <a href="tel:+14379337042" class="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+            +1 (437) 933-7042
+          </a>
+          <a href="https://www.linkedin.com/in/pythonistkushal/" target="_blank" class="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/kuxall" target="_blank" class="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- Professional Summary -->
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 border border-gray-200 dark:border-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+          <span class="w-1 h-8 bg-gradient-to-b from-primary-600 to-purple-600 rounded-full"></span>
+          Professional Summary
+        </h2>
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+          AI Enthusiast with over 3 years of experience in Machine Learning, Natural Language Processing, Large Language Models, Data analysis, proficient in Python. I continuously challenge my knowledge and skills by competing in hackathons and completing online courses to enhance my foundation. I am seeking an opportunity where I can spur innovation and leave a lasting impact by applying my technical expertise and collaborative abilities.
+        </p>
+      </section>
+
+      <!-- Professional Experience -->
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 border border-gray-200 dark:border-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+          <span class="w-1 h-8 bg-gradient-to-b from-primary-600 to-purple-600 rounded-full"></span>
+          Professional Experience
+        </h2>
+
+        <!-- Omdena -->
+        <div class="mb-8 pb-8 border-b border-gray-200 dark:border-gray-700 last:border-0">
+          <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">Machine Learning Engineer</h3>
+              <p class="text-primary-600 dark:text-primary-400 font-semibold">Omdena</p>
+            </div>
+            <div class="text-gray-600 dark:text-gray-400 text-sm md:text-right mt-1 md:mt-0">
+              <p>Remote</p>
+              <p>July 2023 - September 2023</p>
+            </div>
+          </div>
+          <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+            <li class="flex gap-2">
+              <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+              <span>Collected and preprocessed over 500,000 Nepali and English language data samples from diverse sources, including news articles, social media, and academic publications.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+              <span>Produced summary statistics and visualized data distribution, identifying key anomalies led to a 15% improvement in data accuracy for model training.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+              <span>Developed ML Model for Sentiment Analyzer and Entity Extraction in collaboration with team members.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+              <span>Conducted sentiment analysis on 10,000+ data points, diminishing bias detection time by 10%.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Sherpa.Codes -->
+        <div class="mb-8 pb-8 border-b border-gray-200 dark:border-gray-700 last:border-0">
+          <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">AI Lead</h3>
+              <p class="text-primary-600 dark:text-primary-400 font-semibold">Sherpa.Codes</p>
+            </div>
+            <div class="text-gray-600 dark:text-gray-400 text-sm md:text-right mt-1 md:mt-0">
+              <p>Butwal, Nepal</p>
+              <p>September 2021 - May 2023</p>
+            </div>
+          </div>
+          <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+            <li class="flex gap-2">
+              <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+              <span>Led a team of 20+ annotators, ensuring quality control and timely completion of data annotation projects, resulting in creation of a high-quality labelled dataset operated for training machine learning models.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+              <span>Collected data and preprocessed data using spacy, enabling efficient acquisition and preprocessing of large-scale data for NLP projects.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+              <span>Collaborated with cross-functional teams to prioritize data needs for machine learning models, leading to improved model accuracy and relevance in real-world applications.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+              <span>Utilized supercomputer resources to optimize efficiency and reduce computation time by 50% enabling faster experimentation and model iteration.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+              <span>Mentored junior students through final year projects by applying Machine Learning techniques, offering hands-on guidance in model development, and data analysis, resulting in a 100% project success rate.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- National Innovation Center -->
+        <div>
+          <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">Artificial Intelligence Intern</h3>
+              <p class="text-primary-600 dark:text-primary-400 font-semibold">National Innovation Center</p>
+            </div>
+            <div class="text-gray-600 dark:text-gray-400 text-sm md:text-right mt-1 md:mt-0">
+              <p>Kathmandu, Nepal</p>
+              <p>May 2021 - August 2021</p>
+            </div>
+          </div>
+          <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+            <li class="flex gap-2">
+              <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+              <span>Implemented Convolutional Neural Networks (CNN) from scratch for image classification tasks, achieving an accuracy rate of 90% on a benchmark dataset.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+              <span>Reviewed and analyzed research papers on Autonomous Self-Supervised Learning, leading to the identification of novel techniques and improved model performance by 15%.</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+              <span>Recreated the Plant Disease Detection Model using Pytorch, reducing inference time by 30% through model optimization techniques.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 border border-gray-200 dark:border-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+          <span class="w-1 h-8 bg-gradient-to-b from-primary-600 to-purple-600 rounded-full"></span>
+          Skills
+        </h2>
+        
+        <div class="space-y-3 text-gray-700 dark:text-gray-300">
+          <div class="flex gap-2">
+            <span class="font-semibold text-gray-900 dark:text-white min-w-[180px]">Programming:</span>
+            <span>Python, JavaScript, ASP.net</span>
+          </div>
+          
+          <div class="flex gap-2">
+            <span class="font-semibold text-gray-900 dark:text-white min-w-[180px]">Web Development:</span>
+            <span>React, FastAPI, Node.js, HTML, CSS, TypeScript</span>
+          </div>
+          
+          <div class="flex gap-2">
+            <span class="font-semibold text-gray-900 dark:text-white min-w-[180px]">Database:</span>
+            <span>MongoDB, JSON, Postgres, SQL</span>
+          </div>
+          
+          <div class="flex gap-2">
+            <span class="font-semibold text-gray-900 dark:text-white min-w-[180px]">APIs & Security:</span>
+            <span>REST API, JWT</span>
+          </div>
+          
+          <div class="flex gap-2">
+            <span class="font-semibold text-gray-900 dark:text-white min-w-[180px]">AI & Machine Learning:</span>
+            <span>Machine Learning, Deep Learning, NLP, Computer Vision, Prodigy</span>
+          </div>
+          
+          <div class="flex gap-2">
+            <span class="font-semibold text-gray-900 dark:text-white min-w-[180px]">Generative AI:</span>
+            <span>OpenAI GPT-4, LLAMA, Google Gemini, Langchain, RAG, LLMs</span>
+          </div>
+          
+          <div class="flex gap-2">
+            <span class="font-semibold text-gray-900 dark:text-white min-w-[180px]">Tools:</span>
+            <span>Git, Jupyter Notebook, VS Code, Cursor</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 border border-gray-200 dark:border-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+          <span class="w-1 h-8 bg-gradient-to-b from-primary-600 to-purple-600 rounded-full"></span>
+          Education
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Postgraduate - Full Stack Software Development</h3>
+                <p class="text-primary-600 dark:text-primary-400 font-semibold">Lambton College</p>
+              </div>
+              <div class="text-gray-600 dark:text-gray-400 text-sm md:text-right mt-1 md:mt-0">
+                <p>Mississauga, ON</p>
+                <p>May 2024 - Present</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Bachelor's - Computer Science and Information Technology</h3>
+                <p class="text-primary-600 dark:text-primary-400 font-semibold">Nepathya College</p>
+              </div>
+              <div class="text-gray-600 dark:text-gray-400 text-sm md:text-right mt-1 md:mt-0">
+                <p>Manigram, Nepal</p>
+                <p>May 2017 - April 2021</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 border border-gray-200 dark:border-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+          <span class="w-1 h-8 bg-gradient-to-b from-primary-600 to-purple-600 rounded-full"></span>
+          Projects
+        </h2>
+
+        <div class="space-y-6">
+          <!-- Budgetly -->
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Budgetly</h3>
+            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+              <li class="flex gap-2">
+                <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+                <span>Built a full-stack financial management platform with React/TypeScript and FastAPI microservices, enabling real-time analytics and Google OAuth integration.</span>
+              </li>
+              <li class="flex gap-2">
+                <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+                <span>Automated receipt extraction via GPT-4 Vision with 95%+ accuracy and fraud detection, cutting manual data entry by 80%.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- IGBot -->
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">IGBot</h3>
+            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+              <li class="flex gap-2">
+                <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+                <span>Automated Instagram profile and ID scraping using specific keywords, integrating OpenAI generated personalized messages for marketing outreach, resulting in a 25% increase in engagement and sending over 500 targeted DMs per week.</span>
+              </li>
+              <li class="flex gap-2">
+                <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+                <span>Deployed AI-generated responses to streamline Instagram DM marketing, leading to a 25% increase in engagement and boosting product visibility by sending 500+ targeted messages per week.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Digital Advertisement Classification -->
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Digital Advertisement Classification</h3>
+            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+              <li class="flex gap-2">
+                <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+                <span>Developed a web application to categorize digital advertising data from multiple sources, facilitating advertisers to analyze campaign effectiveness and optimize strategies, leading to a 20% improvement in proposing accuracy.</span>
+              </li>
+              <li class="flex gap-2">
+                <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+                <span>Accomplished an accuracy rate of more than 90% in classifying advertisements by leveraging the power of TF-IDF for feature representation.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- TaskFlow -->
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">TaskFlow</h3>
+            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+              <li class="flex gap-2">
+                <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+                <span>Built a task management platform with automated reminders and real-time updates, resulting in 40% improved team productivity and efficient tracking of 100+ tasks weekly.</span>
+              </li>
+              <li class="flex gap-2">
+                <span class="text-primary-600 dark:text-primary-400 mt-1">•</span>
+                <span>Developed collaborative workspace with task assignment and notifications, leading to enhanced team coordination and 30% reduction in missed project deadlines.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Awards -->
+      <section class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 border border-gray-200 dark:border-gray-700">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+          <span class="w-1 h-8 bg-gradient-to-b from-primary-600 to-purple-600 rounded-full"></span>
+          Awards
+        </h2>
+        <div class="flex items-start gap-3">
+          <svg class="w-8 h-8 text-yellow-500 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+          </svg>
+          <div>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Top 5 Finalist - Startup and Idea Fest 2022</h3>
+            <p class="text-gray-700 dark:text-gray-300">Awarded as the "Top 5 Finalist of Startup and Idea Fest 2022 Lumbini Province" by Honorable Minister Tilak Sharma.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Download Button -->
+      <div class="text-center no-print">
+        <button id="downloadBtn" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+          </svg>
+          Download as PDF
+        </button>
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  @media print {
+    .no-print, nav, footer {
+      display: none !important;
+    }
+    
+    body {
+      background: white !important;
+    }
+    
+    main {
+      padding: 20px !important;
+      background: white !important;
+      min-height: auto !important;
+    }
+    
+    .container {
+      max-width: 100% !important;
+      padding: 0 !important;
+    }
+    
+    section {
+      page-break-inside: avoid;
+      box-shadow: none !important;
+      border: 1px solid #ddd !important;
+      margin-bottom: 16px !important;
+      padding: 20px !important;
+      background: white !important;
+    }
+    
+    h1, h2, h3 {
+      color: #000 !important;
+    }
+    
+    p, span, li {
+      color: #333 !important;
+    }
+    
+    .bg-gradient-to-r, .bg-gradient-to-b {
+      background: #6366f1 !important;
+    }
+    
+    a {
+      color: #6366f1 !important;
+      text-decoration: none !important;
+    }
+  }
+  
+  @page {
+    size: A4;
+    margin: 1cm;
+  }
+</style>
+
+<script>
+  document.getElementById('downloadBtn')?.addEventListener('click', () => {
+    // Trigger browser print dialog which allows saving as PDF
+    window.print();
+  });
+</script>

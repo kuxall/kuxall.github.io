@@ -1,0 +1,464 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "TaskFlow: Modern Task Management with ASP.NET Core and SignalR";
+const description = "Creating a real-time task management web app with ASP.NET Core MVC, Entity Framework, and SignalR for live notifications and collaboration.";
+const publishDate = "December 20, 2024";
+const readTime = "12 min read";
+---
+
+<BaseLayout title={title} description={description}>
+  <Navbar />
+  <main class="pt-20">
+    <article class="container max-w-4xl mx-auto px-6 py-12">
+      <!-- Header -->
+      <header class="mb-12">
+        <div class="text-center mb-8">
+          <time class="text-sm text-gray-500 dark:text-gray-400">{publishDate}</time>
+          <span class="mx-2 text-gray-300">•</span>
+          <span class="text-sm text-primary-600 dark:text-primary-400">{readTime}</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-center leading-tight">
+          {title}
+        </h1>
+        
+        <p class="text-xl text-gray-600 dark:text-gray-300 text-center max-w-3xl mx-auto">
+          {description}
+        </p>
+      </header>
+
+      <!-- Content -->
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <h2>Project Overview</h2>
+        <p>
+          TaskFlow is a comprehensive task management web application built with ASP.NET Core MVC that brings modern 
+          collaboration features to project management. The application focuses on real-time communication, intelligent 
+          notifications, and comprehensive analytics to help teams stay productive and organized.
+        </p>
+
+        <h2>Core Architecture</h2>
+        <p>
+          The application is built using a modern .NET stack that emphasizes performance, scalability, and maintainability:
+        </p>
+
+        <h3>Technology Stack</h3>
+        <ul>
+          <li><strong>ASP.NET Core MVC (.NET 9.0)</strong> - Modern web framework with excellent performance</li>
+          <li><strong>Entity Framework Core</strong> - ORM with SQL Server for data persistence</li>
+          <li><strong>SignalR</strong> - Real-time web functionality for live notifications</li>
+          <li><strong>ASP.NET Core Identity</strong> - Comprehensive authentication and authorization</li>
+          <li><strong>Background Services</strong> - Automated task reminders and notifications</li>
+          <li><strong>Serilog</strong> - Structured logging for monitoring and debugging</li>
+        </ul>
+
+        <h2>Key Features Deep Dive</h2>
+
+        <h3>Real-Time Notifications with SignalR</h3>
+        <p>
+          One of TaskFlow's standout features is its real-time notification system. Using SignalR, users receive 
+          instant updates without page refreshes:
+        </p>
+
+        <pre><code>{`// NotificationHub.cs
+public class NotificationHub : Hub
+{
+    public async Task JoinUserGroup(string userId)
+    {
+        await Groups.AddToGroupAsync(Context.ConnectionId, $"User_{userId}");
+    }
+
+    public async Task SendNotificationToUser(string userId, object notification)
+    {
+        await Clients.Group($"User_{userId}")
+            .SendAsync("ReceiveNotification", notification);
+    }
+}`}</code></pre>
+
+        <h3>Smart @Mentions System</h3>
+        <p>
+          The comment system includes intelligent @mentions that automatically notify users when they're referenced:
+        </p>
+
+        <pre><code>{`// Comment processing with @mentions
+public async Task ProcessComment(string content, int taskId)
+{
+    var mentions = ExtractMentions(content); // Find @user@example.com patterns
+    
+    foreach (var mention in mentions)
+    {
+        var user = await _userManager.FindByEmailAsync(mention);
+        if (user != null)
+        {
+            await _notificationService.CreateMentionNotification(user.Id, taskId);
+            await _hubContext.Clients.Group($"User_{user.Id}")
+                .SendAsync("ReceiveNotification", notification);
+        }
+    }
+}`}</code></pre>
+
+        <h3>Automated Due Date Reminders</h3>
+        <p>
+          A background service continuously monitors tasks and sends timely reminders:
+        </p>
+
+        <pre><code>{`// Background service for due date monitoring
+public class DueDateReminderService : BackgroundService
+{
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        while (!stoppingToken.IsCancellationRequested)
+        {
+            await CheckDueDates();
+            await Task.Delay(TimeSpan.FromHours(1), stoppingToken);
+        }
+    }
+
+    private async Task CheckDueDates()
+    {
+        var dueTasks = await _context.Tasks
+            .Where(t => t.DueDate.Date == DateTime.Today && !t.IsCompleted)
+            .Include(t => t.AssignedUser)
+            .ToListAsync();
+
+        foreach (var task in dueTasks)
+        {
+            await _notificationService.CreateDueReminderNotification(task);
+        }
+    }
+}`}</code></pre>
+
+        <h2>Advanced Task Management Features</h2>
+
+        <h3>Progress Synchronization</h3>
+        <p>
+          TaskFlow maintains consistency between completion status and progress percentage through intelligent synchronization:
+        </p>
+
+        <pre><code>{`// Automatic progress synchronization
+public void UpdateTaskProgress(Task task, int progressPercentage)
+{
+    task.Progress = progressPercentage;
+    
+    // Auto-complete when progress reaches 100%
+    if (progressPercentage >= 100 && !task.IsCompleted)
+    {
+        task.IsCompleted = true;
+        task.CompletedDate = DateTime.UtcNow;
+    }
+    // Reopen task if progress drops below 100%
+    else if (progressPercentage < 100 && task.IsCompleted)
+    {
+        task.IsCompleted = false;
+        task.CompletedDate = null;
+    }
+}`}</code></pre>
+
+        <h3>Calendar Integration</h3>
+        <p>
+          The calendar feature provides multiple views and intelligent task creation:
+        </p>
+
+        <ul>
+          <li><strong>Month View</strong> - Overview of all tasks with color-coded priorities</li>
+          <li><strong>Week View</strong> - Detailed weekly planning with drag-and-drop</li>
+          <li><strong>Quick Add</strong> - Click any date to instantly create tasks</li>
+          <li><strong>Smart Filtering</strong> - Filter by status, priority, category, and assignee</li>
+        </ul>
+
+        <h3>Comprehensive Analytics Dashboard</h3>
+        <p>
+          The analytics system provides actionable insights into team productivity:
+        </p>
+
+        <ul>
+          <li><strong>Completion Rates</strong> - Track team and individual performance</li>
+          <li><strong>Priority Breakdown</strong> - Understand workload distribution</li>
+          <li><strong>Category Analysis</strong> - Identify bottlenecks by task type</li>
+          <li><strong>Weekly Trends</strong> - Monitor productivity patterns</li>
+          <li><strong>Recent Activity</strong> - Real-time team activity feed</li>
+          <li><strong>Productivity Tips</strong> - AI-generated recommendations</li>
+        </ul>
+
+        <h2>Data Management & Import/Export</h2>
+
+        <h3>CSV Integration</h3>
+        <p>
+          TaskFlow supports seamless data exchange through CSV import/export functionality:
+        </p>
+
+        <pre><code>{`// CSV Export with comprehensive data
+public async Task<byte[]> ExportTasksToCsv(string userId)
+{
+    var tasks = await _context.Tasks
+        .Where(t => t.CreatedById == userId)
+        .Include(t => t.Category)
+        .Include(t => t.AssignedUser)
+        .Select(t => new TaskExportDto
+        {
+            Title = t.Title,
+            Description = t.Description,
+            Priority = t.Priority.ToString(),
+            Status = t.IsCompleted ? "Completed" : "In Progress",
+            Category = t.Category.Name,
+            AssignedTo = t.AssignedUser?.Email,
+            DueDate = t.DueDate.ToString("yyyy-MM-dd"),
+            Progress = t.Progress,
+            CreatedDate = t.CreatedDate.ToString("yyyy-MM-dd HH:mm")
+        })
+        .ToListAsync();
+
+    return GenerateCsvBytes(tasks);
+}`}</code></pre>
+
+        <h3>Bulk Operations</h3>
+        <p>
+          Efficient bulk operations allow users to manage multiple tasks simultaneously:
+        </p>
+
+        <ul>
+          <li><strong>Multi-select UI</strong> - Checkbox selection across pages</li>
+          <li><strong>Bulk Delete</strong> - Remove multiple tasks with confirmation</li>
+          <li><strong>Batch Updates</strong> - Change status, priority, or assignee for multiple tasks</li>
+          <li><strong>Category Migration</strong> - Move tasks between categories efficiently</li>
+        </ul>
+
+        <h2>Security & Authentication</h2>
+
+        <h3>ASP.NET Core Identity Integration</h3>
+        <p>
+          TaskFlow leverages ASP.NET Core Identity for comprehensive user management:
+        </p>
+
+        <pre><code>{`// Custom user registration with profile setup
+public async Task<IActionResult> Register(RegisterViewModel model)
+{
+    if (ModelState.IsValid)
+    {
+        var user = new ApplicationUser 
+        { 
+            UserName = model.Email, 
+            Email = model.Email,
+            FirstName = model.FirstName,
+            LastName = model.LastName,
+            JoinDate = DateTime.UtcNow
+        };
+
+        var result = await _userManager.CreateAsync(user, model.Password);
+        
+        if (result.Succeeded)
+        {
+            await _signInManager.SignInAsync(user, isPersistent: false);
+            await _notificationService.SendWelcomeNotification(user.Id);
+            return RedirectToAction("Index", "Dashboard");
+        }
+    }
+    return View(model);
+}`}</code></pre>
+
+        <h3>Authorization & Data Security</h3>
+        <ul>
+          <li><strong>Role-based Access</strong> - Different permissions for team members</li>
+          <li><strong>Data Isolation</strong> - Users only see their assigned or created tasks</li>
+          <li><strong>Secure API Endpoints</strong> - All endpoints require authentication</li>
+          <li><strong>CSRF Protection</strong> - Built-in protection against cross-site attacks</li>
+        </ul>
+
+        <h2>Performance Optimizations</h2>
+
+        <h3>Efficient Database Queries</h3>
+        <p>
+          TaskFlow uses optimized Entity Framework queries to ensure fast response times:
+        </p>
+
+        <pre><code>{`// Optimized task loading with selective includes
+public async Task<IEnumerable<TaskViewModel>> GetUserTasksAsync(string userId)
+{
+    return await _context.Tasks
+        .Where(t => t.AssignedUserId == userId || t.CreatedById == userId)
+        .Include(t => t.Category)
+        .Include(t => t.AssignedUser)
+        .Include(t => t.Comments.OrderByDescending(c => c.CreatedDate).Take(3))
+        .ThenInclude(c => c.User)
+        .Select(t => new TaskViewModel
+        {
+            // Map only required properties
+            Id = t.Id,
+            Title = t.Title,
+            Priority = t.Priority,
+            DueDate = t.DueDate,
+            Progress = t.Progress,
+            CategoryName = t.Category.Name,
+            AssignedUserName = t.AssignedUser.FirstName + " " + t.AssignedUser.LastName,
+            RecentComments = t.Comments.Take(3).ToList()
+        })
+        .ToListAsync();
+}`}</code></pre>
+
+        <h3>Caching Strategy</h3>
+        <ul>
+          <li><strong>Memory Caching</strong> - Cache frequently accessed data like categories</li>
+          <li><strong>Response Caching</strong> - Cache static content and analytics data</li>
+          <li><strong>Database Connection Pooling</strong> - Efficient database connection management</li>
+        </ul>
+
+        <h2>Monitoring & Logging</h2>
+
+        <h3>Structured Logging with Serilog</h3>
+        <p>
+          Comprehensive logging helps with debugging and monitoring:
+        </p>
+
+        <pre><code>{`// Structured logging configuration
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.File("TaskFlow/logs/app-.log", 
+        rollingInterval: RollingInterval.Day,
+        retainedFileCountLimit: 30)
+    .CreateLogger();
+
+// Usage in controllers
+_logger.LogInformation("Task {TaskId} assigned to user {UserId} by {AssignerId}", 
+    taskId, assigneeId, currentUserId);`}</code></pre>
+
+        <h2>Challenges & Solutions</h2>
+
+        <h3>Real-Time Performance</h3>
+        <p>
+          <strong>Challenge:</strong> Maintaining real-time performance with multiple concurrent users.
+        </p>
+        <p>
+          <strong>Solution:</strong> Implemented efficient SignalR groups and optimized database queries to minimize latency.
+        </p>
+
+        <h3>Notification Overload</h3>
+        <p>
+          <strong>Challenge:</strong> Users receiving too many notifications, leading to notification fatigue.
+        </p>
+        <p>
+          <strong>Solution:</strong> Added intelligent notification batching and user preference controls for notification types.
+        </p>
+
+        <h3>Data Consistency</h3>
+        <p>
+          <strong>Challenge:</strong> Ensuring data consistency between task progress and completion status.
+        </p>
+        <p>
+          <strong>Solution:</strong> Implemented automatic synchronization logic and validation rules at the model level.
+        </p>
+
+        <h2>Future Enhancements</h2>
+
+        <h3>Planned Features</h3>
+        <ul>
+          <li><strong>Mobile App</strong> - Native iOS and Android applications</li>
+          <li><strong>Advanced Analytics</strong> - Machine learning-powered productivity insights</li>
+          <li><strong>Integration APIs</strong> - Connect with popular tools like Slack, Teams, and Jira</li>
+          <li><strong>Time Tracking</strong> - Built-in time tracking with reporting</li>
+          <li><strong>File Attachments</strong> - Attach documents and images to tasks</li>
+          <li><strong>Gantt Charts</strong> - Visual project timeline management</li>
+        </ul>
+
+        <h3>Technical Improvements</h3>
+        <ul>
+          <li><strong>Microservices Architecture</strong> - Split into smaller, focused services</li>
+          <li><strong>Redis Caching</strong> - Distributed caching for better scalability</li>
+          <li><strong>Docker Containerization</strong> - Easier deployment and scaling</li>
+          <li><strong>API Rate Limiting</strong> - Protect against abuse and ensure fair usage</li>
+        </ul>
+
+        <h2>Key Learnings</h2>
+
+        <h3>Real-Time Development</h3>
+        <ul>
+          <li><strong>Connection Management</strong> - Proper handling of SignalR connections and groups</li>
+          <li><strong>State Synchronization</strong> - Keeping client and server state in sync</li>
+          <li><strong>Error Handling</strong> - Graceful degradation when real-time features fail</li>
+        </ul>
+
+        <h3>User Experience</h3>
+        <ul>
+          <li><strong>Progressive Enhancement</strong> - Core functionality works without JavaScript</li>
+          <li><strong>Responsive Design</strong> - Consistent experience across all devices</li>
+          <li><strong>Accessibility</strong> - Proper ARIA labels and keyboard navigation</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          TaskFlow demonstrates how modern .NET technologies can be combined to create powerful, real-time web applications. 
+          The integration of SignalR for live updates, background services for automation, and comprehensive analytics 
+          creates a task management experience that goes beyond simple to-do lists.
+        </p>
+
+        <p>
+          The project showcases the maturity of the .NET ecosystem and how ASP.NET Core MVC remains a solid choice for 
+          building feature-rich web applications. The real-time capabilities, combined with robust authentication and 
+          comprehensive logging, make TaskFlow a production-ready solution for team collaboration.
+        </p>
+
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mt-8">
+          <h3 class="text-lg font-semibold mb-3">Explore TaskFlow</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            Experience modern task management with real-time collaboration features.
+          </p>
+          <div class="flex gap-4">
+            <a href="https://github.com/kuxall/taskflow" target="_blank" class="btn btn-primary">
+              View on GitHub
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              Discuss Project
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .prose {
+    @apply text-gray-700 dark:text-gray-300;
+  }
+  
+  .prose h2 {
+    @apply text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-white;
+  }
+  
+  .prose h3 {
+    @apply text-xl font-semibold mt-6 mb-3 text-gray-900 dark:text-white;
+  }
+  
+  .prose p {
+    @apply mb-4 leading-relaxed;
+  }
+  
+  .prose ul, .prose ol {
+    @apply mb-4 pl-6;
+  }
+  
+  .prose li {
+    @apply mb-2;
+  }
+  
+  .prose blockquote {
+    @apply border-l-4 border-primary-500 pl-4 italic my-6 text-gray-600 dark:text-gray-400;
+  }
+  
+  .prose pre {
+    @apply bg-gray-100 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto mb-4;
+  }
+  
+  .prose code {
+    @apply bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm;
+  }
+  
+  .prose pre code {
+    @apply bg-transparent px-0 py-0;
+  }
+</style>

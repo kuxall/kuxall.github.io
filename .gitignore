@@ -1,33 +1,23 @@
-# build output
-dist/
-.output/
+# IDE & History
+.history
+.vscode
+.idea
 
-# dependencies
-node_modules/
+# Dependencies
+node_modules
 
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+# Build outputs
+dist
+.astro
+_astro
+site
 
-# environment variables
+# Environment
 .env
-.env.production
 .env.local
 
-# macOS-specific files
-.DS_Store
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# Astro
-.astro/
-
-# Old site backup
-old-site/
+# Generated files
+sitemap*.xml
+robots.txt
+index.html
+favicon.svg

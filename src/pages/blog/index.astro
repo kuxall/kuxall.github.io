@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Blog - Kushal Raj Sharma";
+const description = "Articles about machine learning, AI development, and software engineering";
+
+// Sample blog posts - replace with your actual blog data
+const posts = [
+  {
+    title: "Building Budgetly: AI-Powered Financial Management with GPT-4 Vision",
+    excerpt: "How I built an intelligent expense tracking app using FastAPI, React, and OpenAI's GPT-4 Vision for receipt OCR processing and financial insights.",
+    date: "November 15, 2025",
+    readTime: "15 min read",
+    slug: "building-budgetly-ai-financial-management"
+  },
+  {
+    title: "TaskFlow: Modern Task Management with ASP.NET Core and SignalR", 
+    excerpt: "Creating a real-time task management web app with ASP.NET Core MVC, Entity Framework, and SignalR for live notifications and collaboration.",
+    date: "December 20, 2024",
+    readTime: "12 min read", 
+    slug: "taskflow-aspnet-core-signalr"
+  },
+  {
+    title: "IGBot: AI-Powered Instagram Marketing Automation",
+    excerpt: "How I built an intelligent Instagram automation tool that increased engagement by 25% using OpenAI-generated personalized messages and automated profile scraping.",
+    date: "October 15, 2024",
+    readTime: "10 min read",
+    slug: "igbot"
+  },
+  {
+    title: "Digital Advertisement Classification: ML-Powered Campaign Analysis",
+    excerpt: "Building a machine learning system to categorize digital advertising data with 90%+ accuracy using TF-IDF, improving campaign targeting by 20%.",
+    date: "September 5, 2024",
+    readTime: "11 min read",
+    slug: "digital-ad-classifier"
+  }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Navbar />
+  <main class="pt-20">
+    <div class="container max-w-4xl mx-auto px-6 py-12">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold mb-4">Blog</h1>
+        <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Sharing insights about machine learning, AI development, and software engineering
+        </p>
+      </div>
+
+      <div class="space-y-8">
+        {posts.map((post) => (
+          <article class="group">
+            <a href={`/blog/${post.slug}`} class="block p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600 transition-colors bg-white dark:bg-gray-800">
+              <div class="flex items-start justify-between mb-3">
+                <time class="text-sm text-gray-500 dark:text-gray-400">
+                  {post.date}
+                </time>
+                <span class="text-sm text-primary-600 dark:text-primary-400 font-medium">
+                  {post.readTime}
+                </span>
+              </div>
+              
+              <h2 class="text-2xl font-semibold mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                {post.title}
+              </h2>
+              
+              <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                {post.excerpt}
+              </p>
+              
+              <div class="flex items-center text-primary-600 dark:text-primary-400 font-medium">
+                <span class="mr-2">Read article</span>
+                <span class="text-sm">{post.readTime}</span>
+                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      {posts.length === 0 && (
+        <div class="text-center py-12">
+          <p class="text-gray-500 dark:text-gray-400">No blog posts yet. Check back soon!</p>
+        </div>
+      )}
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

@@ -2,35 +2,23 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
 import Experience from '../components/Experience.astro';
 import Education from '../components/Education.astro';
-import Projects from '../components/Projects.astro';
+import FeaturedProjects from '../components/FeaturedProjects.astro';
 import Skills from '../components/Skills.astro';
 import Awards from '../components/Awards.astro';
-import Activity from '../components/Activity.astro';
+import Blog from '../components/Blog.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import { siteConfig } from '../../site.config';
-import {
-  fetchGitHubUser,
-  fetchUserRepos,
-  getFeaturedProjects,
-  getLanguageStats,
-  getSkillsFromTopics,
-} from '../lib/github';
+import { fetchGitHubUser } from '../lib/github';
 
-// Fetch all data from GitHub
+// Fetch GitHub user data
 const username = siteConfig.githubUsername;
 const user = await fetchGitHubUser(username);
-const repos = await fetchUserRepos(username);
-const featuredProjects = await getFeaturedProjects(username);
-const languageSkills = await getLanguageStats(repos);
-const topicSkills = await getSkillsFromTopics(repos);
 
 // Generate content
-const tagline = "Aspiring Machine Learning Engineer with hands-on experience in NLP, computer vision, and full-stack AI application development";
-const aboutParagraph = "Aspiring Machine Learning Engineer with hands-on experience in NLP, computer vision, and full-stack AI application development. Proficient in tools such as Python, PyTorch, spaCy, scikit-learn, and LangChain, with a passion for building scalable, real-world AI solutions. Actively seeking entry-level ML and Full Stack opportunities to apply technical expertise and contribute to impactful projects.";
+const tagline = "Machine Learning Engineer & Full-Stack Developer";
 
 // Resume data - Professional Experience
 const experiences = [
@@ -96,9 +84,7 @@ const awards = [
   }
 ];
 
-// Calculate stats
-const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
-const totalForks = repos.reduce((sum, repo) => sum + repo.forks_count, 0);
+
 
 // SEO
 const title = `${user.name || user.login} - Developer Portfolio`;
@@ -113,28 +99,14 @@ const description = tagline;
       tagline={tagline}
       avatar={user.avatar_url}
     />
-    <About
-      about={aboutParagraph}
-      location={user.location}
-      company={user.company}
-      email="c0940005@mylambton.ca"
-      phone="+1 (437) 933-7042"
-    />
     <Experience experiences={experiences} />
     <Education education={education} />
-    <Projects projects={featuredProjects} />
-    <Skills
-      languageSkills={languageSkills}
-      topicSkills={topicSkills}
-    />
+    <FeaturedProjects />
+    <Skills />
     <Awards awards={awards} />
-    <Activity
-      totalRepos={repos.length}
-      totalStars={totalStars}
-      publicRepos={user.public_repos}
-    />
+    <Blog />
     <Contact
-      email="c0940005@mylambton.ca"
+      email="Kuxall0@gmail.com"
       phone="+1 (437) 933-7042"
       linkedinUrl="https://linkedin.com/in/pythonistkushal"
       githubUrl={`https://github.com/${username}`}

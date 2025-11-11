@@ -8,51 +8,169 @@ interface Props {
 const { name, tagline, avatar } = Astro.props;
 ---
 
-<section id="home" class="min-h-screen flex items-center justify-center pt-16 section">
-  <div class="container">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-12">
-      <div class="flex-1 text-center md:text-left animate-fade-in-up">
-        <div class="inline-block mb-4">
-          <span class="text-primary-600 dark:text-primary-400 font-semibold text-lg">
-            👋 Hello, I'm
+<section id="home" class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+  <!-- Animated Background with Grid -->
+  <div class="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800"></div>
+  
+  <!-- Grid Pattern -->
+  <div class="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]" style="background-image: radial-gradient(circle, #000 1px, transparent 1px); background-size: 50px 50px;"></div>
+  
+  <!-- Animated Blobs -->
+  <div class="absolute inset-0 opacity-40 dark:opacity-30">
+    <div class="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-primary-400 to-primary-600 dark:from-primary-900 dark:to-primary-700 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl animate-blob"></div>
+    <div class="absolute top-40 right-10 w-96 h-96 bg-gradient-to-br from-purple-400 to-purple-600 dark:from-purple-900 dark:to-purple-700 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl animate-blob animation-delay-2000"></div>
+    <div class="absolute bottom-20 left-1/2 w-96 h-96 bg-gradient-to-br from-pink-400 to-pink-600 dark:from-pink-900 dark:to-pink-700 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl animate-blob animation-delay-4000"></div>
+  </div>
+
+  <div class="container relative z-10 max-w-6xl mx-auto px-6">
+    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      <!-- Left: Content -->
+      <div class="flex-1 text-center lg:text-left space-y-6 animate-fade-in-up">
+        <div class="inline-block">
+          <span class="inline-flex items-center gap-2 px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium">
+            <span class="relative flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-primary-500"></span>
+            </span>
+            Available for opportunities
           </span>
         </div>
-        <h1 class="text-4xl md:text-6xl font-bold mb-6">
-          {name}
+
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
+          <span class="inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary-600 via-purple-600 to-pink-600 dark:from-primary-400 dark:via-purple-400 dark:to-pink-400 animate-gradient">
+            {name}
+          </span>
         </h1>
-        <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl">
-          {tagline}
-        </p>
-        <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-          <a href="https://github.com/Kuxall" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-            <svg class="w-5 h-5 inline-block mr-2" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+
+        <div class="space-y-4">
+          <p class="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-200 leading-relaxed max-w-2xl">
+            {tagline}
+          </p>
+
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-xl leading-relaxed">
+            Building intelligent systems with <span class="text-primary-600 dark:text-primary-400 font-medium">Python</span>, <span class="text-primary-600 dark:text-primary-400 font-medium">PyTorch</span>, <span class="text-primary-600 dark:text-primary-400 font-medium">LLMs</span> and modern AI frameworks. 
+            Passionate about <span class="text-purple-600 dark:text-purple-400 font-medium">NLP</span>, <span class="text-purple-600 dark:text-purple-400 font-medium">computer vision</span>, and creating scalable ML solutions.
+          </p>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-6">
+          <a href="#projects" class="group relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-1 overflow-hidden">
+            <span class="relative z-10">View My Work</span>
+            <svg class="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
-            View GitHub
+            <div class="absolute inset-0 bg-gradient-to-r from-primary-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </a>
-          <a href="#contact" class="btn btn-outline">
-            <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <a href="#contact" class="group inline-flex items-center gap-2 px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-xl font-semibold border-2 border-gray-300 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-500 transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-lg">
+            <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
             </svg>
-            Email Me
+            <span>Get in Touch</span>
+          </a>
+        </div>
+
+        <!-- Social Links -->
+        <div class="flex gap-3 justify-center lg:justify-start pt-6">
+          <a href="https://github.com/Kuxall" target="_blank" rel="noopener noreferrer" class="group p-4 bg-white dark:bg-gray-800 rounded-xl hover:bg-primary-50 dark:hover:bg-gray-700 transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600">
+            <svg class="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+          <a href="https://linkedin.com/in/pythonistkushal" target="_blank" rel="noopener noreferrer" class="group p-4 bg-white dark:bg-gray-800 rounded-xl hover:bg-primary-50 dark:hover:bg-gray-700 transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600">
+            <svg class="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <a href="mailto:Kuxall0@gmail.com" class="group p-4 bg-white dark:bg-gray-800 rounded-xl hover:bg-primary-50 dark:hover:bg-gray-700 transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 border border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-600">
+            <svg class="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
           </a>
         </div>
       </div>
-      
-      <div class="flex-shrink-0 animate-fade-in-up">
+
+      <!-- Right: Image -->
+      <div class="flex-shrink-0 animate-fade-in-up animation-delay-200">
         <div class="relative">
-          <div class="absolute inset-0 bg-primary-600 dark:bg-primary-500 rounded-full blur-2xl opacity-20 animate-pulse"></div>
-          <img
-            src={avatar}
-            alt={name}
-            class="relative w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-2xl"
-            loading="eager"
-          />
+          <!-- Decorative elements with enhanced glow -->
+          <div class="absolute -inset-8 bg-gradient-to-r from-primary-500 via-purple-500 to-pink-500 rounded-full opacity-20 blur-3xl animate-pulse"></div>
+          <div class="absolute -inset-4 bg-gradient-to-r from-primary-400 via-purple-400 to-pink-400 rounded-full opacity-30 blur-2xl"></div>
+          
+          <!-- Rotating ring -->
+          <div class="absolute inset-0 rounded-full border-2 border-dashed border-primary-300 dark:border-primary-700 animate-spin-slow"></div>
+          
+          <!-- Main image -->
+          <div class="relative">
+            <img
+              src={avatar}
+              alt={name}
+              class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full object-cover border-8 border-white dark:border-gray-800 shadow-2xl ring-4 ring-primary-100 dark:ring-primary-900/30"
+              loading="eager"
+            />
+            
+            <!-- Floating badges with enhanced design -->
+            <div class="absolute -bottom-6 -right-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-2xl p-4 animate-float border-2 border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-3">
+                <div class="relative">
+                  <div class="w-4 h-4 bg-green-500 rounded-full animate-pulse"></div>
+                  <div class="absolute inset-0 w-4 h-4 bg-green-500 rounded-full animate-ping"></div>
+                </div>
+                <div>
+                  <span class="text-sm font-semibold text-gray-900 dark:text-white block">Available</span>
+                  <span class="text-xs text-gray-600 dark:text-gray-400">Open to work</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <a href="#about" class="flex flex-col items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+      <span class="text-sm font-medium">Scroll to explore</span>
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </a>
+  </div>
 </section>
+
+<style>
+  @keyframes blob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+</style>
 
 <style>
   @media (prefers-reduced-motion: no-preference) {

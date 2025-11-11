@@ -1,0 +1,285 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Building Budgetly: AI-Powered Financial Management with GPT-4 Vision";
+const description = "How I built an intelligent expense tracking app using FastAPI, React, and OpenAI's GPT-4 Vision for receipt OCR processing and financial insights.";
+const publishDate = "January 15, 2025";
+const readTime = "15 min read";
+---
+
+<BaseLayout title={title} description={description}>
+  <Navbar />
+  <main class="pt-20">
+    <article class="container max-w-4xl mx-auto px-6 py-12">
+      <!-- Header -->
+      <header class="mb-12">
+        <div class="text-center mb-8">
+          <time class="text-sm text-gray-500 dark:text-gray-400">{publishDate}</time>
+          <span class="mx-2 text-gray-300">•</span>
+          <span class="text-sm text-primary-600 dark:text-primary-400">{readTime}</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-center leading-tight">
+          {title}
+        </h1>
+        
+        <p class="text-xl text-gray-600 dark:text-gray-300 text-center max-w-3xl mx-auto">
+          {description}
+        </p>
+      </header>
+
+      <!-- Content -->
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <h2>The Challenge</h2>
+        <p>
+          Managing personal finances shouldn't be a tedious task of manually entering receipts and categorizing expenses. 
+          I wanted to build something that leverages modern AI to make financial tracking as simple as taking a photo of a receipt.
+        </p>
+
+        <h2>Tech Stack & Architecture</h2>
+        <p>
+          Budgetly is built with a modern, AI-first architecture that prioritizes both user experience and intelligent automation:
+        </p>
+
+        <h3>Backend (FastAPI + Python)</h3>
+        <ul>
+          <li><strong>FastAPI</strong> - Modern, fast web framework with automatic API documentation</li>
+          <li><strong>OpenAI GPT-4 Vision</strong> - Receipt OCR and image analysis</li>
+          <li><strong>OpenAI GPT-4</strong> - Natural language queries and financial insights</li>
+          <li><strong>JWT Authentication</strong> - Secure user sessions</li>
+          <li><strong>Google OAuth</strong> - Social login integration</li>
+        </ul>
+
+        <h3>Frontend (React + TypeScript)</h3>
+        <ul>
+          <li><strong>React 18</strong> - Modern UI with hooks and concurrent features</li>
+          <li><strong>TypeScript</strong> - Type safety and better developer experience</li>
+          <li><strong>Tailwind CSS</strong> - Utility-first styling</li>
+          <li><strong>Chart.js</strong> - Interactive financial charts</li>
+          <li><strong>Framer Motion</strong> - Smooth animations</li>
+        </ul>
+
+        <h2>AI-Powered Receipt Processing</h2>
+        <p>
+          The core innovation in Budgetly is the intelligent receipt processing system. Here's how it works:
+        </p>
+
+        <h3>Multi-Format Support</h3>
+        <p>
+          The system handles both images (JPEG, PNG, WebP, TIFF) and PDF receipts using different processing pipelines:
+        </p>
+
+        <pre><code>{`// Image processing with GPT-4 Vision
+const processImageReceipt = async (imageFile) => {
+  const response = await openai.chat.completions.create({
+    model: "gpt-4-vision-preview",
+    messages: [{
+      role: "user",
+      content: [
+        { type: "text", text: "Extract receipt data..." },
+        { type: "image_url", image_url: { url: imageBase64 } }
+      ]
+    }]
+  });
+  return parseReceiptData(response);
+};`}</code></pre>
+
+        <h3>Confidence-Based Automation</h3>
+        <p>
+          One of the most innovative features is the confidence-based automation system. The AI provides confidence scores for extracted data:
+        </p>
+
+        <ul>
+          <li><strong>High Confidence (≥0.8)</strong> - Automatically creates expense</li>
+          <li><strong>Medium Confidence (0.5-0.8)</strong> - Prompts for user review</li>
+          <li><strong>Low Confidence (&lt;0.5)</strong> - Requires manual entry</li>
+        </ul>
+
+        <p>
+          Users can customize these thresholds in settings, allowing conservative users to require more manual review 
+          while convenience-focused users can allow more automation.
+        </p>
+
+        <h2>Security & Validation</h2>
+        <p>
+          Handling financial data requires enterprise-grade security. Budgetly implements multiple security layers:
+        </p>
+
+        <h3>Multi-Layer File Validation</h3>
+        <ul>
+          <li><strong>Frontend validation</strong> - File type, size, and format checks</li>
+          <li><strong>Backend scanning</strong> - MIME type verification and malicious content detection</li>
+          <li><strong>AI verification</strong> - Ensures uploaded files are actually receipts</li>
+        </ul>
+
+        <h3>Privacy Protection</h3>
+        <ul>
+          <li><strong>24-hour storage</strong> - Receipts automatically deleted after processing</li>
+          <li><strong>Token-based access</strong> - Secure receipt viewing with unique tokens</li>
+          <li><strong>Rate limiting</strong> - 50 uploads per hour per user</li>
+          <li><strong>Image sanitization</strong> - Re-encoding to remove metadata</li>
+        </ul>
+
+        <h2>Natural Language Queries</h2>
+        <p>
+          Users can ask questions about their finances in plain English:
+        </p>
+
+        <blockquote>
+          <p>"How much did I spend on coffee last month?"</p>
+          <p>"What's my biggest expense category this year?"</p>
+          <p>"Am I overspending on entertainment?"</p>
+        </blockquote>
+
+        <p>
+          The system uses GPT-4 to understand the query, analyze the user's financial data, and provide intelligent responses.
+        </p>
+
+        <h2>Real-Time Analytics</h2>
+        <p>
+          The dashboard provides live financial insights including:
+        </p>
+
+        <ul>
+          <li>Financial health scoring (0-100)</li>
+          <li>Budget vs actual spending with alerts</li>
+          <li>Spending trends and seasonal analysis</li>
+          <li>Category breakdowns with AI insights</li>
+          <li>Anomaly detection for unusual spending</li>
+        </ul>
+
+        <h2>Challenges & Solutions</h2>
+
+        <h3>Receipt Quality Variations</h3>
+        <p>
+          <strong>Challenge:</strong> Receipts come in many formats, lighting conditions, and quality levels.
+        </p>
+        <p>
+          <strong>Solution:</strong> Implemented confidence scoring with detailed explanations, allowing users to understand 
+          why certain receipts need manual review.
+        </p>
+
+        <h3>Data Privacy</h3>
+        <p>
+          <strong>Challenge:</strong> Users are sensitive about financial data privacy.
+        </p>
+        <p>
+          <strong>Solution:</strong> Automatic 24-hour deletion of receipt images, local data storage options, 
+          and transparent privacy controls.
+        </p>
+
+        <h3>AI Cost Management</h3>
+        <p>
+          <strong>Challenge:</strong> GPT-4 Vision API calls can be expensive for high-resolution images.
+        </p>
+        <p>
+          <strong>Solution:</strong> Image optimization, intelligent resizing, and caching strategies to minimize API costs 
+          while maintaining accuracy.
+        </p>
+
+        <h2>Key Learnings</h2>
+
+        <h3>AI Integration Best Practices</h3>
+        <ul>
+          <li><strong>Always provide confidence scores</strong> - Users need to understand AI reliability</li>
+          <li><strong>Make AI decisions transparent</strong> - Explain why certain actions were taken</li>
+          <li><strong>Allow user customization</strong> - Different users have different risk tolerances</li>
+          <li><strong>Graceful degradation</strong> - System should work even when AI fails</li>
+        </ul>
+
+        <h3>User Experience Insights</h3>
+        <ul>
+          <li><strong>Instant feedback is crucial</strong> - Users expect immediate processing results</li>
+          <li><strong>Mobile-first design</strong> - Most receipt photos are taken on phones</li>
+          <li><strong>Progressive disclosure</strong> - Show simple results first, details on demand</li>
+        </ul>
+
+        <h2>Future Enhancements</h2>
+        <p>
+          The next phase of Budgetly will include:
+        </p>
+
+        <ul>
+          <li><strong>Predictive budgeting</strong> - AI-suggested budgets based on spending patterns</li>
+          <li><strong>Expense forecasting</strong> - Predict future expenses using historical data</li>
+          <li><strong>Smart categorization learning</strong> - AI learns from user corrections</li>
+          <li><strong>Integration APIs</strong> - Connect with banks and credit card providers</li>
+          <li><strong>Multi-currency support</strong> - Handle international transactions</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          Building Budgetly taught me that successful AI integration isn't just about using the latest models—it's about 
+          creating systems that users can trust and understand. The confidence-based automation approach strikes the right 
+          balance between convenience and control, while the multi-layer security ensures user data remains protected.
+        </p>
+
+        <p>
+          The project demonstrates how modern AI can transform traditional applications, making complex tasks like financial 
+          management accessible and intelligent. As AI continues to evolve, applications like Budgetly will become even more 
+          powerful and user-friendly.
+        </p>
+
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mt-8">
+          <h3 class="text-lg font-semibold mb-3">Try Budgetly</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            Experience AI-powered financial management for yourself. Upload a receipt and see the magic happen!
+          </p>
+          <div class="flex gap-4">
+            <a href="https://github.com/kuxall/budgetly" target="_blank" class="btn btn-primary">
+              View on GitHub
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              Get in Touch
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .prose {
+    @apply text-gray-700 dark:text-gray-300;
+  }
+  
+  .prose h2 {
+    @apply text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-white;
+  }
+  
+  .prose h3 {
+    @apply text-xl font-semibold mt-6 mb-3 text-gray-900 dark:text-white;
+  }
+  
+  .prose p {
+    @apply mb-4 leading-relaxed;
+  }
+  
+  .prose ul, .prose ol {
+    @apply mb-4 pl-6;
+  }
+  
+  .prose li {
+    @apply mb-2;
+  }
+  
+  .prose blockquote {
+    @apply border-l-4 border-primary-500 pl-4 italic my-6 text-gray-600 dark:text-gray-400;
+  }
+  
+  .prose pre {
+    @apply bg-gray-100 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto mb-4;
+  }
+  
+  .prose code {
+    @apply bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm;
+  }
+  
+  .prose pre code {
+    @apply bg-transparent px-0 py-0;
+  }
+</style>

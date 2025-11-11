@@ -1,20 +1,23 @@
 ---
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-800/50 shadow-sm">
   <div class="container">
     <div class="flex items-center justify-between h-16">
-      <a href="/" class="text-xl font-bold text-primary-600 dark:text-primary-400">
-        Kuxall
+      <a href="/" class="group flex items-center gap-2">
+        <div class="w-10 h-10 bg-gradient-to-br from-primary-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:shadow-xl transition-shadow">
+          K
+        </div>
+        <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-purple-600 dark:from-primary-400 dark:to-purple-400">
+          Kushal
+        </span>
       </a>
       
-      <div class="hidden md:flex items-center space-x-8">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#education" class="nav-link">Education</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#contact" class="nav-link">Contact</a>
+      <div class="hidden md:flex items-center space-x-1">
+        <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+        <a href="#blog" class="nav-link" data-section="blog">Blog</a>
+        <a href="/resume" class="nav-link">Resume</a>
+        <a href="#contact" class="nav-link-primary" data-section="contact">Contact</a>
         
         <button
           id="theme-toggle"
@@ -40,12 +43,10 @@
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden md:hidden pb-4">
       <div class="flex flex-col space-y-2">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#education" class="nav-link">Education</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+        <a href="#blog" class="nav-link" data-section="blog">Blog</a>
+        <a href="/resume" class="nav-link">Resume</a>
+        <a href="#contact" class="nav-link" data-section="contact">Contact</a>
       </div>
     </div>
   </div>
@@ -53,7 +54,19 @@
 
 <style>
   .nav-link {
-    @apply text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium;
+    @apply px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg hover:bg-primary-50 dark:hover:bg-gray-800 transition-all font-medium;
+  }
+  
+  .nav-link.active {
+    @apply text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-gray-800;
+  }
+  
+  .nav-link-primary {
+    @apply px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all font-medium shadow-md hover:shadow-lg;
+  }
+  
+  .nav-link-primary.active {
+    @apply bg-primary-700;
   }
 </style>
 
@@ -71,6 +84,40 @@
       link.addEventListener('click', () => {
         mobileMenu?.classList.add('hidden');
       });
+    });
+    
+    // Active navigation highlighting based on scroll position
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link[data-section], .nav-link-primary[data-section]');
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.getAttribute('id');
+          
+          // Remove active class from all links
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+          });
+          
+          // Add active class to current section link
+          navLinks.forEach(link => {
+            if (link.getAttribute('data-section') === sectionId) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+    
+    sections.forEach(section => {
+      observer.observe(section);
     });
   });
 </script>

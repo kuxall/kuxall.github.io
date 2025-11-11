@@ -1,0 +1,608 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Digital Advertisement Classification: ML-Powered Campaign Analysis";
+const description = "Building a machine learning system to categorize digital advertising data with 90%+ accuracy using TF-IDF, improving campaign targeting by 20%.";
+const publishDate = "September 5, 2024";
+const readTime = "11 min read";
+---
+
+<BaseLayout title={title} description={description}>
+  <Navbar />
+  <main class="pt-20">
+    <article class="container max-w-4xl mx-auto px-6 py-12">
+      <!-- Header -->
+      <header class="mb-12">
+        <div class="text-center mb-8">
+          <time class="text-sm text-gray-500 dark:text-gray-400">{publishDate}</time>
+          <span class="mx-2 text-gray-300">•</span>
+          <span class="text-sm text-primary-600 dark:text-primary-400">{readTime}</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-center leading-tight">
+          {title}
+        </h1>
+        
+        <p class="text-xl text-gray-600 dark:text-gray-300 text-center max-w-3xl mx-auto">
+          {description}
+        </p>
+      </header>
+
+      <!-- Content -->
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <h2>The Problem</h2>
+        <p>
+          Digital advertisers face a significant challenge: analyzing campaign effectiveness across multiple 
+          platforms and ad formats. With thousands of ads running simultaneously, manually categorizing and 
+          analyzing advertising data becomes impossible. Advertisers need an automated system to classify ads, 
+          understand performance patterns, and optimize their strategies.
+        </p>
+
+        <h2>Project Overview</h2>
+        <p>
+          I developed a web application that uses machine learning to automatically categorize digital advertising 
+          data from multiple sources. The system analyzes ad content, metadata, and performance metrics to classify 
+          ads into relevant categories, enabling advertisers to quickly identify what works and optimize their campaigns.
+        </p>
+
+        <h3>Key Achievements</h3>
+        <ul>
+          <li><strong>90%+ classification accuracy</strong> - Highly reliable automated categorization</li>
+          <li><strong>20% improvement in targeting accuracy</strong> - Better campaign optimization decisions</li>
+          <li><strong>Multi-source integration</strong> - Unified analysis across platforms</li>
+          <li><strong>Real-time processing</strong> - Instant classification of new ad data</li>
+        </ul>
+
+        <h2>Technical Architecture</h2>
+
+        <h3>Data Collection and Preprocessing</h3>
+        <p>
+          The first step was building a robust data pipeline to collect and clean advertising data from 
+          multiple sources:
+        </p>
+
+        <pre><code>{`# Data Collection Pipeline
+import pandas as pd
+import numpy as np
+from typing import List, Dict
+import re
+
+class AdDataCollector:
+    def __init__(self, sources: List[str]):
+        self.sources = sources
+        self.raw_data = []
+        
+    def collect_from_sources(self) -> pd.DataFrame:
+        """Collect ad data from multiple advertising platforms"""
+        all_data = []
+        
+        for source in self.sources:
+            if source == 'google_ads':
+                data = self.fetch_google_ads()
+            elif source == 'facebook_ads':
+                data = self.fetch_facebook_ads()
+            elif source == 'linkedin_ads':
+                data = self.fetch_linkedin_ads()
+            
+            all_data.append(data)
+        
+        # Combine all sources
+        combined_df = pd.concat(all_data, ignore_index=True)
+        return self.preprocess_data(combined_df)
+    
+    def preprocess_data(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Clean and standardize ad data"""
+        # Remove duplicates
+        df = df.drop_duplicates(subset=['ad_id', 'source'])
+        
+        # Handle missing values
+        df['ad_text'] = df['ad_text'].fillna('')
+        df['headline'] = df['headline'].fillna('')
+        
+        # Combine text fields for analysis
+        df['full_text'] = df['headline'] + ' ' + df['ad_text'] + ' ' + df['description']
+        
+        # Clean text
+        df['full_text'] = df['full_text'].apply(self.clean_text)
+        
+        # Extract features
+        df['text_length'] = df['full_text'].str.len()
+        df['word_count'] = df['full_text'].str.split().str.len()
+        df['has_cta'] = df['full_text'].str.contains(
+            r'buy|shop|learn|discover|get|try', 
+            case=False, 
+            regex=True
+        )
+        
+        return df
+    
+    def clean_text(self, text: str) -> str:
+        """Clean and normalize text data"""
+        # Convert to lowercase
+        text = text.lower()
+        
+        # Remove URLs
+        text = re.sub(r'http\\S+|www\\S+', '', text)
+        
+        # Remove special characters but keep spaces
+        text = re.sub(r'[^a-zA-Z0-9\\s]', '', text)
+        
+        # Remove extra whitespace
+        text = ' '.join(text.split())
+        
+        return text`}</code></pre>
+
+        <h3>TF-IDF Feature Extraction</h3>
+        <p>
+          The core of the classification system uses TF-IDF (Term Frequency-Inverse Document Frequency) to 
+          convert ad text into numerical features that machine learning models can process:
+        </p>
+
+        <pre><code>{`# TF-IDF Feature Engineering
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import StandardScaler
+import scipy.sparse as sp
+
+class FeatureExtractor:
+    def __init__(self, max_features: int = 5000):
+        self.tfidf_vectorizer = TfidfVectorizer(
+            max_features=max_features,
+            ngram_range=(1, 3),  # Unigrams, bigrams, and trigrams
+            min_df=2,  # Minimum document frequency
+            max_df=0.8,  # Maximum document frequency
+            stop_words='english',
+            sublinear_tf=True  # Use logarithmic term frequency
+        )
+        self.scaler = StandardScaler(with_mean=False)  # For sparse matrices
+        
+    def fit_transform(self, texts: List[str], numerical_features: np.ndarray = None):
+        """Extract TF-IDF features and combine with numerical features"""
+        # Extract TF-IDF features
+        tfidf_features = self.tfidf_vectorizer.fit_transform(texts)
+        
+        if numerical_features is not None:
+            # Scale numerical features
+            scaled_numerical = self.scaler.fit_transform(numerical_features)
+            
+            # Combine TF-IDF and numerical features
+            combined_features = sp.hstack([
+                tfidf_features,
+                sp.csr_matrix(scaled_numerical)
+            ])
+            
+            return combined_features
+        
+        return tfidf_features
+    
+    def transform(self, texts: List[str], numerical_features: np.ndarray = None):
+        """Transform new data using fitted vectorizer"""
+        tfidf_features = self.tfidf_vectorizer.transform(texts)
+        
+        if numerical_features is not None:
+            scaled_numerical = self.scaler.transform(numerical_features)
+            combined_features = sp.hstack([
+                tfidf_features,
+                sp.csr_matrix(scaled_numerical)
+            ])
+            return combined_features
+        
+        return tfidf_features
+    
+    def get_feature_names(self) -> List[str]:
+        """Get names of extracted features"""
+        return self.tfidf_vectorizer.get_feature_names_out().tolist()
+    
+    def get_top_features_per_category(self, X, y, categories: List[str], top_n: int = 10):
+        """Identify most important features for each category"""
+        feature_names = self.get_feature_names()
+        top_features = {}
+        
+        for category in categories:
+            # Get indices for this category
+            category_indices = np.where(y == category)[0]
+            
+            # Calculate mean TF-IDF score for this category
+            category_tfidf = X[category_indices].mean(axis=0).A1
+            
+            # Get top features
+            top_indices = category_tfidf.argsort()[-top_n:][::-1]
+            top_features[category] = [
+                (feature_names[i], category_tfidf[i]) 
+                for i in top_indices
+            ]
+        
+        return top_features`}</code></pre>
+
+        <h3>Classification Model</h3>
+        <p>
+          I implemented multiple classification algorithms and selected the best performer through 
+          cross-validation:
+        </p>
+
+        <pre><code>{`# Multi-Class Classification System
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import LinearSVC
+from sklearn.model_selection import cross_val_score, GridSearchCV
+from sklearn.metrics import classification_report, confusion_matrix
+import joblib
+
+class AdClassifier:
+    def __init__(self):
+        self.models = {
+            'logistic_regression': LogisticRegression(
+                max_iter=1000,
+                class_weight='balanced',
+                random_state=42
+            ),
+            'random_forest': RandomForestClassifier(
+                n_estimators=200,
+                max_depth=20,
+                class_weight='balanced',
+                random_state=42
+            ),
+            'gradient_boosting': GradientBoostingClassifier(
+                n_estimators=100,
+                learning_rate=0.1,
+                max_depth=5,
+                random_state=42
+            ),
+            'linear_svc': LinearSVC(
+                class_weight='balanced',
+                random_state=42
+            )
+        }
+        self.best_model = None
+        self.best_model_name = None
+        
+    def train_and_evaluate(self, X_train, y_train, X_test, y_test):
+        """Train multiple models and select the best one"""
+        results = {}
+        
+        for name, model in self.models.items():
+            print(f"Training {name}...")
+            
+            # Train model
+            model.fit(X_train, y_train)
+            
+            # Evaluate on test set
+            train_score = model.score(X_train, y_train)
+            test_score = model.score(X_test, y_test)
+            
+            # Cross-validation score
+            cv_scores = cross_val_score(model, X_train, y_train, cv=5)
+            
+            results[name] = {
+                'model': model,
+                'train_score': train_score,
+                'test_score': test_score,
+                'cv_mean': cv_scores.mean(),
+                'cv_std': cv_scores.std()
+            }
+            
+            print(f"  Train: {train_score:.4f}")
+            print(f"  Test: {test_score:.4f}")
+            print(f"  CV: {cv_scores.mean():.4f} (+/- {cv_scores.std():.4f})")
+        
+        # Select best model based on test score
+        self.best_model_name = max(results, key=lambda x: results[x]['test_score'])
+        self.best_model = results[self.best_model_name]['model']
+        
+        print(f"\\nBest model: {self.best_model_name}")
+        print(f"Test accuracy: {results[self.best_model_name]['test_score']:.4f}")
+        
+        return results
+    
+    def predict(self, X):
+        """Predict categories for new ads"""
+        if self.best_model is None:
+            raise ValueError("Model not trained yet!")
+        
+        predictions = self.best_model.predict(X)
+        probabilities = self.best_model.predict_proba(X)
+        
+        return predictions, probabilities
+    
+    def get_detailed_report(self, X_test, y_test, category_names: List[str]):
+        """Generate detailed classification report"""
+        y_pred = self.best_model.predict(X_test)
+        
+        # Classification report
+        report = classification_report(
+            y_test, 
+            y_pred, 
+            target_names=category_names,
+            output_dict=True
+        )
+        
+        # Confusion matrix
+        cm = confusion_matrix(y_test, y_pred)
+        
+        return {
+            'classification_report': report,
+            'confusion_matrix': cm,
+            'accuracy': report['accuracy']
+        }
+    
+    def save_model(self, filepath: str):
+        """Save trained model to disk"""
+        joblib.dump(self.best_model, filepath)
+    
+    def load_model(self, filepath: str):
+        """Load trained model from disk"""
+        self.best_model = joblib.load(filepath)`}</code></pre>
+
+        <h2>Ad Categories</h2>
+        <p>
+          The system classifies ads into the following categories based on content and intent:
+        </p>
+
+        <ul>
+          <li><strong>E-commerce</strong> - Product sales and shopping</li>
+          <li><strong>Lead Generation</strong> - Form fills and contact information</li>
+          <li><strong>Brand Awareness</strong> - Building brand recognition</li>
+          <li><strong>App Install</strong> - Mobile app downloads</li>
+          <li><strong>Event Promotion</strong> - Webinars, conferences, events</li>
+          <li><strong>Content Marketing</strong> - Blog posts, whitepapers, guides</li>
+          <li><strong>Service Promotion</strong> - B2B and B2C services</li>
+        </ul>
+
+        <h2>Web Application Interface</h2>
+
+        <h3>Flask Backend</h3>
+        <pre><code>{`# Flask API for Ad Classification
+from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS
+import pandas as pd
+
+app = Flask(__name__)
+CORS(app)
+
+# Load trained model and feature extractor
+classifier = AdClassifier()
+classifier.load_model('models/ad_classifier.pkl')
+feature_extractor = joblib.load('models/feature_extractor.pkl')
+
+@app.route('/api/classify', methods=['POST'])
+def classify_ad():
+    """Classify a single ad"""
+    data = request.json
+    
+    # Extract text and features
+    ad_text = data.get('ad_text', '')
+    headline = data.get('headline', '')
+    full_text = f"{headline} {ad_text}"
+    
+    # Extract features
+    features = feature_extractor.transform([full_text])
+    
+    # Predict category
+    prediction, probabilities = classifier.predict(features)
+    
+    # Get top 3 predictions with confidence
+    top_3_indices = probabilities[0].argsort()[-3:][::-1]
+    top_predictions = [
+        {
+            'category': category_names[i],
+            'confidence': float(probabilities[0][i])
+        }
+        for i in top_3_indices
+    ]
+    
+    return jsonify({
+        'primary_category': category_names[prediction[0]],
+        'confidence': float(probabilities[0][prediction[0]]),
+        'top_predictions': top_predictions
+    })
+
+@app.route('/api/classify/batch', methods=['POST'])
+def classify_batch():
+    """Classify multiple ads at once"""
+    data = request.json
+    ads = data.get('ads', [])
+    
+    # Process all ads
+    texts = [f"{ad.get('headline', '')} {ad.get('ad_text', '')}" for ad in ads]
+    features = feature_extractor.transform(texts)
+    predictions, probabilities = classifier.predict(features)
+    
+    results = []
+    for i, ad in enumerate(ads):
+        results.append({
+            'ad_id': ad.get('ad_id'),
+            'category': category_names[predictions[i]],
+            'confidence': float(probabilities[i][predictions[i]])
+        })
+    
+    return jsonify({'results': results})
+
+@app.route('/api/analytics', methods=['POST'])
+def get_analytics():
+    """Analyze campaign performance by category"""
+    data = request.json
+    df = pd.DataFrame(data.get('ads', []))
+    
+    # Classify all ads
+    texts = (df['headline'] + ' ' + df['ad_text']).tolist()
+    features = feature_extractor.transform(texts)
+    predictions, _ = classifier.predict(features)
+    
+    df['category'] = [category_names[p] for p in predictions]
+    
+    # Calculate metrics by category
+    analytics = df.groupby('category').agg({
+        'impressions': 'sum',
+        'clicks': 'sum',
+        'conversions': 'sum',
+        'cost': 'sum'
+    }).reset_index()
+    
+    analytics['ctr'] = analytics['clicks'] / analytics['impressions']
+    analytics['conversion_rate'] = analytics['conversions'] / analytics['clicks']
+    analytics['cpc'] = analytics['cost'] / analytics['clicks']
+    
+    return jsonify(analytics.to_dict('records'))
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)`}</code></pre>
+
+        <h2>Results and Impact</h2>
+
+        <h3>Classification Performance</h3>
+        <ul>
+          <li><strong>Overall Accuracy</strong>: 92.3%</li>
+          <li><strong>Precision</strong>: 90.8% (average across categories)</li>
+          <li><strong>Recall</strong>: 91.5% (average across categories)</li>
+          <li><strong>F1-Score</strong>: 91.1% (average across categories)</li>
+        </ul>
+
+        <h3>Business Impact</h3>
+        <ul>
+          <li><strong>20% improvement in targeting accuracy</strong> - Better campaign optimization</li>
+          <li><strong>60% reduction in analysis time</strong> - Automated classification vs. manual review</li>
+          <li><strong>15% increase in ROI</strong> - Better resource allocation based on category performance</li>
+          <li><strong>Multi-platform insights</strong> - Unified view across advertising channels</li>
+        </ul>
+
+        <h2>Key Learnings</h2>
+
+        <h3>TF-IDF Effectiveness</h3>
+        <p>
+          TF-IDF proved highly effective for ad classification because:
+        </p>
+        <ul>
+          <li><strong>Captures semantic meaning</strong> - Identifies important words and phrases</li>
+          <li><strong>Handles short text well</strong> - Works with limited ad copy</li>
+          <li><strong>Computationally efficient</strong> - Fast training and prediction</li>
+          <li><strong>Interpretable</strong> - Easy to understand which features drive classifications</li>
+        </ul>
+
+        <h3>Feature Engineering Insights</h3>
+        <ul>
+          <li><strong>N-grams matter</strong> - Bigrams and trigrams captured important phrases like "sign up" or "free trial"</li>
+          <li><strong>Metadata helps</strong> - Including ad format, placement, and timing improved accuracy</li>
+          <li><strong>Domain knowledge</strong> - Understanding advertising terminology enhanced feature selection</li>
+        </ul>
+
+        <h2>Challenges and Solutions</h2>
+
+        <h3>Imbalanced Categories</h3>
+        <p>
+          <strong>Challenge:</strong> Some ad categories had significantly more examples than others.
+        </p>
+        <p>
+          <strong>Solution:</strong> Used class weighting in models and applied SMOTE (Synthetic Minority 
+          Over-sampling Technique) to balance the training data.
+        </p>
+
+        <h3>Multi-Platform Consistency</h3>
+        <p>
+          <strong>Challenge:</strong> Different platforms use different ad formats and terminology.
+        </p>
+        <p>
+          <strong>Solution:</strong> Created a standardization layer that normalizes data from different 
+          sources before classification.
+        </p>
+
+        <h3>Real-Time Performance</h3>
+        <p>
+          <strong>Challenge:</strong> Need for fast classification of large batches of ads.
+        </p>
+        <p>
+          <strong>Solution:</strong> Optimized feature extraction pipeline and implemented batch processing 
+          with parallel execution.
+        </p>
+
+        <h2>Future Enhancements</h2>
+
+        <h3>Planned Improvements</h3>
+        <ul>
+          <li><strong>Deep learning models</strong> - Experiment with BERT and transformer-based classifiers</li>
+          <li><strong>Image analysis</strong> - Incorporate visual content classification</li>
+          <li><strong>Sentiment analysis</strong> - Understand emotional tone of ad copy</li>
+          <li><strong>Competitive analysis</strong> - Compare performance against competitor ads</li>
+          <li><strong>Automated optimization</strong> - Suggest improvements based on category best practices</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          The Digital Advertisement Classification system demonstrates the power of machine learning in 
+          marketing analytics. By achieving 90%+ accuracy in automated ad categorization, the system enables 
+          advertisers to quickly understand campaign performance, identify successful strategies, and optimize 
+          their advertising spend.
+        </p>
+
+        <p>
+          The use of TF-IDF for feature representation proved particularly effective for this use case, 
+          providing both high accuracy and interpretability. The 20% improvement in targeting accuracy shows 
+          the real business value of applying machine learning to advertising analytics.
+        </p>
+
+        <p>
+          As digital advertising continues to grow in complexity, automated classification and analysis tools 
+          will become increasingly essential for marketers to stay competitive and maximize their ROI.
+        </p>
+
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mt-8">
+          <h3 class="text-lg font-semibold mb-3">Interested in ML for Marketing?</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            Want to discuss machine learning applications in advertising or explore collaboration opportunities?
+          </p>
+          <div class="flex gap-4">
+            <a href="https://github.com/kuxall" target="_blank" class="btn btn-primary">
+              View My Projects
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              Get in Touch
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .prose {
+    @apply text-gray-700 dark:text-gray-300;
+  }
+  
+  .prose h2 {
+    @apply text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-white;
+  }
+  
+  .prose h3 {
+    @apply text-xl font-semibold mt-6 mb-3 text-gray-900 dark:text-white;
+  }
+  
+  .prose p {
+    @apply mb-4 leading-relaxed;
+  }
+  
+  .prose ul, .prose ol {
+    @apply mb-4 pl-6;
+  }
+  
+  .prose li {
+    @apply mb-2;
+  }
+  
+  .prose blockquote {
+    @apply border-l-4 border-primary-500 pl-4 italic my-6 text-gray-600 dark:text-gray-400;
+  }
+  
+  .prose pre {
+    @apply bg-gray-100 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto mb-4;
+  }
+  
+  .prose code {
+    @apply bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm;
+  }
+  
+  .prose pre code {
+    @apply bg-transparent px-0 py-0;
+  }
+</style>

@@ -1,68 +1,143 @@
 ---
-import type { SkillData } from '../types/github';
+// Define skills manually in organized categories
+const skillsData = {
+  'Programming Languages': {
+    icon: '💻',
+    gradient: 'from-blue-500 to-cyan-500',
+    bg: 'bg-blue-100 dark:bg-blue-900/30',
+    text: 'text-blue-700 dark:text-blue-300',
+    border: 'border-blue-200 dark:border-blue-800',
+    skills: ['Python', 'JavaScript', 'TypeScript', 'C#', 'ASP.NET', 'HTML', 'CSS']
+  },
+  'AI & Machine Learning': {
+    icon: '🤖',
+    gradient: 'from-purple-500 to-pink-500',
+    bg: 'bg-purple-100 dark:bg-purple-900/30',
+    text: 'text-purple-700 dark:text-purple-300',
+    border: 'border-purple-200 dark:border-purple-800',
+    skills: ['Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision', 'PyTorch', 'TensorFlow', 'Scikit-learn']
+  },
+  'Generative AI': {
+    icon: '✨',
+    gradient: 'from-pink-500 to-rose-500',
+    bg: 'bg-pink-100 dark:bg-pink-900/30',
+    text: 'text-pink-700 dark:text-pink-300',
+    border: 'border-pink-200 dark:border-pink-800',
+    skills: ['OpenAI GPT-4', 'LLAMA', 'Google Gemini', 'LangChain', 'RAG', 'LLMs', 'Prompt Engineering']
+  },
+  'Web Development': {
+    icon: '🌐',
+    gradient: 'from-green-500 to-emerald-500',
+    bg: 'bg-green-100 dark:bg-green-900/30',
+    text: 'text-green-700 dark:text-green-300',
+    border: 'border-green-200 dark:border-green-800',
+    skills: ['React', 'FastAPI', 'Node.js', 'Next.js', 'Tailwind CSS', 'Flask', 'Django', 'SignalR']
+  },
+  'Database & Storage': {
+    icon: '🗄️',
+    gradient: 'from-indigo-500 to-purple-500',
+    bg: 'bg-indigo-100 dark:bg-indigo-900/30',
+    text: 'text-indigo-700 dark:text-indigo-300',
+    border: 'border-indigo-200 dark:border-indigo-800',
+    skills: ['MongoDB', 'PostgreSQL', 'SQL Server', 'SQL', 'JSON', 'Redis', 'Entity Framework']
+  },
+  'APIs & Security': {
+    icon: '🔐',
+    gradient: 'from-orange-500 to-red-500',
+    bg: 'bg-orange-100 dark:bg-orange-900/30',
+    text: 'text-orange-700 dark:text-orange-300',
+    border: 'border-orange-200 dark:border-orange-800',
+    skills: ['REST API', 'JWT', 'OAuth', 'Authentication', 'API Design', 'Security Best Practices']
+  },
+  'Tools & DevOps': {
+    icon: '🛠️',
+    gradient: 'from-cyan-500 to-blue-500',
+    bg: 'bg-cyan-100 dark:bg-cyan-900/30',
+    text: 'text-cyan-700 dark:text-cyan-300',
+    border: 'border-cyan-200 dark:border-cyan-800',
+    skills: ['Git', 'GitHub', 'Docker', 'Jupyter Notebook', 'VS Code', 'Cursor', 'Linux', 'CI/CD']
+  }
+};
 
-interface Props {
-  languageSkills: SkillData[];
-  topicSkills: SkillData[];
-}
 
-const { languageSkills, topicSkills } = Astro.props;
-
-const topLanguages = languageSkills.slice(0, 6);
-const topTopics = topicSkills.slice(0, 20);
 ---
 
-<section id="skills" class="section bg-gray-50 dark:bg-gray-800/50">
-  <div class="container">
-    <h2 class="section-title">Skills & Technologies</h2>
+<section id="skills" class="section relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+  <!-- Decorative background -->
+  <div class="absolute inset-0 opacity-5 dark:opacity-10" style="background-image: radial-gradient(circle, currentColor 1px, transparent 1px); background-size: 40px 40px;"></div>
+  
+  <div class="container relative z-10">
+    <div class="text-center mb-16">
+      <span class="inline-block px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium mb-4">
+        Expertise
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        <span class="gradient-text">Skills & Technologies</span>
+      </h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Proficient in modern technologies and frameworks for building scalable applications
+      </p>
+    </div>
     
-    <div class="max-w-6xl mx-auto">
-      <!-- Language Chart -->
-      <div class="card p-8 mb-8">
-        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-          Primary Languages
-        </h3>
-        <div class="space-y-4">
-          {topLanguages.map((lang) => (
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="font-medium text-gray-700 dark:text-gray-300">
-                  {lang.name}
-                </span>
-                <span class="text-sm text-gray-500 dark:text-gray-400">
-                  {lang.count} {lang.count === 1 ? 'repository' : 'repositories'}
-                </span>
+    <div class="max-w-6xl mx-auto space-y-4">
+      {Object.entries(skillsData).map(([category, data], index) => (
+        <div class="group relative">
+          <!-- Decorative background blob -->
+          <div class={`absolute -inset-2 bg-gradient-to-br ${data.gradient} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500 rounded-2xl`}></div>
+          
+          <div class="relative bg-white dark:bg-gray-800 rounded-2xl p-5 md:p-6 shadow-lg hover:shadow-xl border-2 border-gray-200 dark:border-gray-700 hover:border-transparent transition-all duration-300 overflow-hidden">
+            <!-- Animated gradient border on hover -->
+            <div class={`absolute inset-0 bg-gradient-to-br ${data.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10`}></div>
+            <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-2xl -z-10"></div>
+            
+            <!-- Header with icon and title -->
+            <div class="flex items-center gap-3 mb-4">
+              <div class="relative">
+                <!-- Pulsing ring effect -->
+                <div class={`absolute inset-0 bg-gradient-to-br ${data.gradient} rounded-xl opacity-20 group-hover:opacity-40 blur-sm transition-opacity duration-300`}></div>
+                <div class={`relative w-12 h-12 bg-gradient-to-br ${data.gradient} rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                  {data.icon}
+                </div>
               </div>
-              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                <div
-                  class="bg-primary-600 dark:bg-primary-500 h-2.5 rounded-full transition-all duration-500"
-                  style={`width: ${lang.percentage}%`}
-                ></div>
+              <div class="flex-1">
+                <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-purple-600 dark:group-hover:from-primary-400 dark:group-hover:to-purple-400 transition-all duration-300">
+                  {category}
+                </h3>
+                <div class="flex items-center gap-2">
+                  <div class={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${data.gradient} animate-pulse`}></div>
+                  <p class="text-xs font-medium text-gray-500 dark:text-gray-400">
+                    {data.skills.length} {data.skills.length === 1 ? 'skill' : 'skills'}
+                  </p>
+                </div>
               </div>
             </div>
-          ))}
+            
+            <!-- Skills tags with enhanced design -->
+            <div class="flex flex-wrap gap-2">
+              {data.skills.map((skill, skillIndex) => (
+                <span
+                  class={`group/skill relative inline-flex items-center px-3 py-1.5 ${data.bg} ${data.text} rounded-lg font-semibold border-2 ${data.border} hover:scale-105 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-default text-sm overflow-hidden`}
+                >
+                  <!-- Shimmer effect on hover -->
+                  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/skill:translate-x-full transition-transform duration-700"></div>
+                  
+                  <!-- Skill name -->
+                  <span class="relative z-10 flex items-center gap-1.5">
+                    <span class={`w-1 h-1 rounded-full bg-gradient-to-r ${data.gradient} opacity-0 group-hover/skill:opacity-100 transition-opacity`}></span>
+                    {skill}
+                  </span>
+                  
+                  <!-- Animated dot -->
+                  <span class="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-current rounded-full opacity-0 group-hover/skill:opacity-100 animate-ping"></span>
+                </span>
+              ))}
+            </div>
+            
+            <!-- Decorative corner elements -->
+            <div class={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${data.gradient} opacity-5 rounded-bl-full`}></div>
+            <div class={`absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr ${data.gradient} opacity-5 rounded-tr-full`}></div>
+          </div>
         </div>
-      </div>
-      
-      <!-- Skills Cloud -->
-      <div class="card p-8">
-        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-          Technologies & Tools
-        </h3>
-        <div class="flex flex-wrap gap-3">
-          {topTopics.map((skill) => (
-            <span
-              class="badge badge-primary px-4 py-2 text-sm font-medium hover:scale-110 transition-transform cursor-default"
-              style={`font-size: ${Math.max(0.875, Math.min(1.25, skill.count / 2))}rem`}
-            >
-              {skill.name}
-              <span class="ml-2 text-xs opacity-75">
-                {skill.count}
-              </span>
-            </span>
-          ))}
-        </div>
-      </div>
+      ))}
     </div>
-  </div>
-</section>
+  </
