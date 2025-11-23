@@ -1,8 +1,9 @@
 ---
 interface AwardItem {
   title: string;
+  issuer: string;
+  date: string;
   description: string;
-  year: string;
 }
 
 interface Props {
@@ -12,31 +13,46 @@ interface Props {
 const { awards } = Astro.props;
 ---
 
-<section id="awards" class="section">
-  <div class="container">
-    <h2 class="section-title">Awards & Achievements</h2>
-    
-    <div class="max-w-4xl mx-auto space-y-4">
-      {awards.map((award) => (
-        <div class="card p-6 hover:shadow-lg transition-shadow duration-300">
-          <div class="flex items-start gap-4">
-            <div class="flex-shrink-0">
-              <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
-                <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-              </div>
-            </div>
-            <div class="flex-1">
-              <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white">
-                  {award.title}
-                </h3>
-                <span class="text-sm text-gray-500 dark:text-gray-400 font-medium mt-1 md:mt-0">
-                  {award.year}
+<section id="awards" class="section relative overflow-hidden bg-[#050508]">
+  <div class="container relative z-10">
+    <div class="text-center mb-16">
+      <div class="inline-block mb-4">
+        <span class="badge badge-primary">
+          <span class="animate-pulse mr-2">●</span>
+          HALL_OF_FAME
+        </span>
+      </div>
+      <h2 class="section-title">
+        <span class="neon-text-purple">ACHIEVEMENTS</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      {awards.map((award, index) => (
+        <div class={`group relative reveal stagger-${(index % 3) + 1}`}>
+          <div class="relative bg-gray-900 border border-gray-800 p-6 rounded-lg hover:border-purple-500/50 transition-all duration-300 h-full flex flex-col">
+            <!-- Glow Effect -->
+            <div class="absolute inset-0 bg-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+            
+            <div class="relative z-10 flex-1">
+              <div class="flex items-start justify-between mb-4">
+                <div class="text-3xl filter drop-shadow-[0_0_10px_rgba(191,0,255,0.5)]">
+                  🏆
+                </div>
+                <span class="text-xs font-mono text-purple-400 border border-purple-500/20 px-2 py-1 rounded bg-purple-900/10">
+                  {award.date}
                 </span>
               </div>
-              <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+              
+              <h3 class="text-lg font-bold text-white font-orbitron mb-2 group-hover:text-purple-400 transition-colors">
+                {award.title}
+              </h3>
+              
+              <div class="text-sm font-mono text-gray-400 mb-3">
+                <span class="text-cyan-500">ISSUER:</span> {award.issuer}
+              </div>
+              
+              <p class="text-gray-400 text-sm leading-relaxed border-t border-gray-800 pt-3">
                 {award.description}
               </p>
             </div>

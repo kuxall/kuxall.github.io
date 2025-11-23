@@ -57,6 +57,9 @@ const ogImage = image || `${siteUrl}/og-image.png`;
     </script>
   </head>
   <body>
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary-600 via-purple-600 to-pink-600 z-[100] transition-all duration-300" style="width: 0%"></div>
+    
     <slot />
     
     <script>
@@ -79,6 +82,20 @@ const ogImage = image || `${siteUrl}/og-image.png`;
       // Smooth scroll for anchor links
       document.addEventListener('DOMContentLoaded', () => {
         initThemeToggle();
+        
+        // Scroll progress indicator
+        const scrollProgress = document.getElementById('scroll-progress');
+        const updateScrollProgress = () => {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          const progress = (scrollTop / scrollHeight) * 100;
+          if (scrollProgress) {
+            scrollProgress.style.width = `${progress}%`;
+          }
+        };
+        
+        window.addEventListener('scroll', updateScrollProgress);
+        updateScrollProgress(); // Initial call
         
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
           anchor.addEventListener('click', function (e) {

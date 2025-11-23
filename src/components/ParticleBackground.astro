@@ -1,0 +1,56 @@
+---
+/**
+ * Neural Network Particle Background Component
+ * Creates an animated particle system with connecting lines
+ */
+---
+
+<div class="particle-background">
+  <canvas id="particle-canvas" class="particle-canvas"></canvas>
+</div>
+
+<script>
+  import { ParticleSystem } from '../lib/animations';
+
+  // Initialize particle system when DOM is ready
+  const canvas = document.getElementById('particle-canvas') as HTMLCanvasElement;
+  
+  if (canvas) {
+    const particleSystem = new ParticleSystem(canvas, 80);
+    particleSystem.start();
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+      particleSystem.stop();
+    });
+  }
+</script>
+
+<style>
+  .particle-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .particle-canvas {
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+  }
+
+  .dark .particle-canvas {
+    opacity: 0.4;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .particle-canvas {
+      display: none;
+    }
+  }
+</style>

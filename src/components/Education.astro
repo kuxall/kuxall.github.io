@@ -13,30 +13,92 @@ interface Props {
 const { education } = Astro.props;
 ---
 
-<section id="education" class="section bg-gray-50 dark:bg-gray-800/50">
-  <div class="container">
-    <h2 class="section-title">Education</h2>
-    
-    <div class="max-w-4xl mx-auto space-y-4">
-      {education.map((edu) => (
-        <div class="card p-6 hover:shadow-lg transition-shadow duration-300">
-          <div class="flex flex-col md:flex-row md:items-start md:justify-between">
-            <div class="flex-1">
-              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                {edu.degree}
-              </h3>
-              <p class="text-lg text-primary-600 dark:text-primary-400 font-semibold mb-1">
-                {edu.institution}
-              </p>
-              {edu.field && (
-                <p class="text-gray-600 dark:text-gray-400">
-                  {edu.field}
-                </p>
-              )}
+<section id="education" class="section relative overflow-hidden bg-[#0a0a0f]">
+  <!-- Grid Background -->
+  <div class="absolute inset-0 opacity-5" 
+       style="background-image: linear-gradient(rgba(0, 255, 255, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.3) 1px, transparent 1px); background-size: 50px 50px;">
+  </div>
+
+  <div class="container relative z-10">
+    <div class="text-center mb-16">
+      <div class="inline-block mb-4">
+        <span class="badge badge-primary">
+          <span class="animate-pulse mr-2">●</span>
+          ACADEMIC_RECORDS
+        </span>
+      </div>
+      <h2 class="section-title">
+        <span class="neon-text">EDUCATION_LOGS</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      {education.map((edu, index) => (
+        <div class={`group relative reveal stagger-${(index % 2) + 1}`}>
+          <!-- Terminal Window Card -->
+          <div class="relative bg-[#0c0c0c] border border-gray-800 rounded-lg overflow-hidden hover:border-cyan-500/50 transition-all duration-300 shadow-2xl font-mono group-hover:shadow-[0_0_30px_rgba(0,255,255,0.1)]">
+            
+            <!-- Terminal Header -->
+            <div class="bg-[#1a1a1a] px-4 py-2 flex items-center justify-between border-b border-gray-800">
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+              </div>
+              <div class="text-xs text-gray-500 font-mono">root@portfolio:~/education</div>
+              <div class="w-12"></div> <!-- Spacer for centering -->
             </div>
-            <div class="text-sm text-gray-500 dark:text-gray-400 mt-2 md:mt-0 md:text-right">
-              <p class="font-medium">{edu.period}</p>
+
+            <!-- Terminal Body -->
+            <div class="p-6 space-y-4">
+              <!-- Command Input -->
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-green-500">➜</span>
+                <span class="text-cyan-500">~</span>
+                <span class="text-gray-300">cat</span>
+                <span class="text-yellow-300">{edu.degree.toLowerCase().split(' ').slice(0, 2).join('_')}.txt</span>
+              </div>
+
+              <!-- Output Content -->
+              <div class="pl-4 border-l-2 border-gray-800 space-y-3 text-sm">
+                <div class="grid grid-cols-[100px_1fr] gap-2">
+                  <span class="text-gray-500">Degree:</span>
+                  <span class="text-cyan-300 font-bold">{edu.degree}</span>
+                </div>
+                
+                <div class="grid grid-cols-[100px_1fr] gap-2">
+                  <span class="text-gray-500">Institution:</span>
+                  <span class="text-purple-300">{edu.institution}</span>
+                </div>
+
+                <div class="grid grid-cols-[100px_1fr] gap-2">
+                  <span class="text-gray-500">Period:</span>
+                  <span class="text-green-300">{edu.period}</span>
+                </div>
+
+                {edu.field && (
+                  <div class="grid grid-cols-[100px_1fr] gap-2">
+                    <span class="text-gray-500">Field:</span>
+                    <span class="text-gray-300">{edu.field}</span>
+                  </div>
+                )}
+
+                <div class="grid grid-cols-[100px_1fr] gap-2">
+                  <span class="text-gray-500">Status:</span>
+                  <span class="text-green-500">[SUCCESS]</span>
+                </div>
+              </div>
+
+              <!-- Blinking Cursor -->
+              <div class="flex items-center gap-2 text-sm mt-4">
+                <span class="text-green-500">➜</span>
+                <span class="text-cyan-500">~</span>
+                <span class="w-2 h-4 bg-gray-500 animate-pulse"></span>
+              </div>
             </div>
+            
+            <!-- Scanline Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent translate-y-[-100%] group-hover:translate-y-[100%] transition-transform duration-1000 pointer-events-none mix-blend-overlay"></div>
           </div>
         </div>
       ))}

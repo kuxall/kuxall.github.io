@@ -58,86 +58,104 @@ const skillsData = {
     skills: ['Git', 'GitHub', 'Docker', 'Jupyter Notebook', 'VS Code', 'Cursor', 'Linux', 'CI/CD']
   }
 };
-
-
 ---
 
-<section id="skills" class="section relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-  <!-- Decorative background -->
-  <div class="absolute inset-0 opacity-5 dark:opacity-10" style="background-image: radial-gradient(circle, currentColor 1px, transparent 1px); background-size: 40px 40px;"></div>
-  
+<section id="skills" class="section relative overflow-hidden bg-[#0a0a0f]">
+  <!-- Neural Background -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-500/20 via-transparent to-transparent"></div>
+  </div>
+
   <div class="container relative z-10">
+    <!-- Section Header -->
     <div class="text-center mb-16">
-      <span class="inline-block px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium mb-4">
-        Expertise
-      </span>
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">
-        <span class="gradient-text">Skills & Technologies</span>
+      <div class="inline-block mb-4">
+        <span class="badge badge-primary">
+          <span class="animate-pulse mr-2">●</span>
+          NEURAL_CAPABILITIES
+        </span>
+      </div>
+      <h2 class="section-title">
+        <span class="neon-text">SKILL_MATRIX</span>
       </h2>
-      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-        Proficient in modern technologies and frameworks for building scalable applications
+      <p class="text-gray-400 font-mono max-w-2xl mx-auto">
+        > ANALYZING TECHNICAL COMPETENCIES...
       </p>
     </div>
-    
-    <div class="max-w-6xl mx-auto space-y-4">
+
+    <div class="max-w-6xl mx-auto space-y-8">
       {Object.entries(skillsData).map(([category, data], index) => (
-        <div class="group relative">
-          <!-- Decorative background blob -->
-          <div class={`absolute -inset-2 bg-gradient-to-br ${data.gradient} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500 rounded-2xl`}></div>
-          
-          <div class="relative bg-white dark:bg-gray-800 rounded-2xl p-5 md:p-6 shadow-lg hover:shadow-xl border-2 border-gray-200 dark:border-gray-700 hover:border-transparent transition-all duration-300 overflow-hidden">
-            <!-- Animated gradient border on hover -->
-            <div class={`absolute inset-0 bg-gradient-to-br ${data.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10`}></div>
-            <div class="absolute inset-[2px] bg-white dark:bg-gray-800 rounded-2xl -z-10"></div>
+        <div class={`group relative reveal stagger-${(index % 6) + 1}`}>
+          <!-- Terminal Window -->
+          <div class="relative bg-[#0c0c0c] border border-gray-800 rounded-lg overflow-hidden hover:border-cyan-500/50 transition-all duration-300 shadow-2xl font-mono group-hover:shadow-[0_0_30px_rgba(0,255,255,0.1)] h-full">
             
-            <!-- Header with icon and title -->
-            <div class="flex items-center gap-3 mb-4">
-              <div class="relative">
-                <!-- Pulsing ring effect -->
-                <div class={`absolute inset-0 bg-gradient-to-br ${data.gradient} rounded-xl opacity-20 group-hover:opacity-40 blur-sm transition-opacity duration-300`}></div>
-                <div class={`relative w-12 h-12 bg-gradient-to-br ${data.gradient} rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
-                  {data.icon}
-                </div>
+            <!-- Terminal Header -->
+            <div class="bg-[#1a1a1a] px-4 py-2 flex items-center justify-between border-b border-gray-800">
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
               </div>
-              <div class="flex-1">
-                <h3 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-purple-600 dark:group-hover:from-primary-400 dark:group-hover:to-purple-400 transition-all duration-300">
-                  {category}
-                </h3>
-                <div class="flex items-center gap-2">
-                  <div class={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${data.gradient} animate-pulse`}></div>
-                  <p class="text-xs font-medium text-gray-500 dark:text-gray-400">
-                    {data.skills.length} {data.skills.length === 1 ? 'skill' : 'skills'}
-                  </p>
+              <div class="text-xs text-gray-500 font-mono">root@portfolio:~/skills</div>
+              <div class="w-12"></div>
+            </div>
+
+            <!-- Terminal Body -->
+            <div class="p-6 space-y-4">
+              <!-- Command Input -->
+              <div class="flex items-center gap-2 text-sm">
+                <span class="text-green-500">➜</span>
+                <span class="text-cyan-500">~</span>
+                <span class="text-gray-300">cat</span>
+                <span class="text-yellow-300">{category.toLowerCase().replace(/[^a-z0-9]/g, '_')}.json</span>
+              </div>
+
+              <!-- JSON Output -->
+              <div class="font-mono text-sm leading-relaxed">
+                <div class="text-yellow-500">{`{`}</div>
+                <div class="pl-4">
+                  <span class="text-purple-400">"category"</span>: <span class="text-green-300">"{category}"</span>,
                 </div>
+                <div class="pl-4">
+                  <span class="text-purple-400">"icon"</span>: <span class="text-orange-300">"{data.icon}"</span>,
+                </div>
+                <div class="pl-4">
+                  <span class="text-purple-400">"skills"</span>: [
+                </div>
+                <div class="pl-8 flex flex-wrap gap-x-2 gap-y-1">
+                  {data.skills.map((skill, i) => (
+                    <span>
+                      <span class="text-cyan-300">"{skill}"</span>
+                      {i < data.skills.length - 1 && <span class="text-gray-500">,</span>}
+                    </span>
+                  ))}
+                </div>
+                <div class="pl-4">]</div>
+                <div class="text-yellow-500">{`}`}</div>
+              </div>
+
+              <!-- Blinking Cursor -->
+              <div class="flex items-center gap-2 text-sm mt-2">
+                <span class="text-green-500">➜</span>
+                <span class="text-cyan-500">~</span>
+                <span class="w-2 h-4 bg-gray-500 animate-pulse"></span>
               </div>
             </div>
-            
-            <!-- Skills tags with enhanced design -->
-            <div class="flex flex-wrap gap-2">
-              {data.skills.map((skill, skillIndex) => (
-                <span
-                  class={`group/skill relative inline-flex items-center px-3 py-1.5 ${data.bg} ${data.text} rounded-lg font-semibold border-2 ${data.border} hover:scale-105 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-default text-sm overflow-hidden`}
-                >
-                  <!-- Shimmer effect on hover -->
-                  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/skill:translate-x-full transition-transform duration-700"></div>
-                  
-                  <!-- Skill name -->
-                  <span class="relative z-10 flex items-center gap-1.5">
-                    <span class={`w-1 h-1 rounded-full bg-gradient-to-r ${data.gradient} opacity-0 group-hover/skill:opacity-100 transition-opacity`}></span>
-                    {skill}
-                  </span>
-                  
-                  <!-- Animated dot -->
-                  <span class="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-current rounded-full opacity-0 group-hover/skill:opacity-100 animate-ping"></span>
-                </span>
-              ))}
-            </div>
-            
-            <!-- Decorative corner elements -->
-            <div class={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${data.gradient} opacity-5 rounded-bl-full`}></div>
-            <div class={`absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr ${data.gradient} opacity-5 rounded-tr-full`}></div>
+
+            <!-- Scanline Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent translate-y-[-100%] group-hover:translate-y-[100%] transition-transform duration-1000 pointer-events-none mix-blend-overlay"></div>
           </div>
         </div>
       ))}
     </div>
-  </
+  </div>
+</section>
+
+<script>
+  import { observeElements } from '../lib/animations';
+
+  // Initialize scroll reveal animations
+  observeElements('.reveal', (entry) => {
+    entry.target.classList.add('active');
+  });
+</script>

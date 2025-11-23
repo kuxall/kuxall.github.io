@@ -5,6 +5,8 @@ interface BlogPost {
   date: string;
   readTime: string;
   slug: string;
+  image?: string;
+  category?: string;
 }
 
 interface Props {
@@ -20,102 +22,100 @@ const samplePosts: BlogPost[] = [
     excerpt: "How I built an intelligent expense tracking app using FastAPI, React, and OpenAI's GPT-4 Vision for receipt OCR processing and financial insights.",
     date: "January 15, 2025",
     readTime: "15 min read",
-    slug: "building-budgetly-ai-financial-management"
+    slug: "building-budgetly-ai-financial-management",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+    category: "AI_ENGINEERING"
   },
   {
     title: "TaskFlow: Modern Task Management with ASP.NET Core and SignalR",
     excerpt: "Creating a real-time task management web app with ASP.NET Core MVC, Entity Framework, and SignalR for live notifications and collaboration.",
     date: "December 20, 2024", 
     readTime: "12 min read",
-    slug: "taskflow-aspnet-core-signalr"
+    slug: "taskflow-aspnet-core-signalr",
+    image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=2072&auto=format&fit=crop",
+    category: "WEB_DEV"
   }
 ];
 
 const displayPosts = posts.length > 0 ? posts : samplePosts;
 ---
 
-<section id="blog" class="section bg-white dark:bg-gray-900">
-  <div class="container">
+<section id="blog" class="section relative overflow-hidden bg-[#0a0a0f]">
+  <!-- Grid Background -->
+  <div class="absolute inset-0 opacity-5" 
+       style="background-image: linear-gradient(rgba(0, 255, 255, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.3) 1px, transparent 1px); background-size: 40px 40px;">
+  </div>
+
+  <div class="container relative z-10">
     <div class="text-center mb-16">
-      <span class="inline-block px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium mb-4">
-        Blog
-      </span>
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">
-        <span class="gradient-text">Latest Posts</span>
+      <div class="inline-block mb-4">
+        <span class="badge badge-primary">
+          <span class="animate-pulse mr-2">●</span>
+          NEURAL_ARCHIVES
+        </span>
+      </div>
+      <h2 class="section-title">
+        <span class="neon-text">KNOWLEDGE_BASE</span>
       </h2>
-      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-        Deep dives into AI, machine learning, and full-stack development
+      <p class="text-gray-400 font-mono max-w-2xl mx-auto">
+        > DECRYPTING THOUGHTS AND TUTORIALS...
       </p>
     </div>
 
-    {displayPosts.length > 0 ? (
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
-        {displayPosts.map((post) => (
-          <article class="group">
-            <a href={`/blog/${post.slug}`} class="block h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden hover-lift border border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-500 transition-all duration-300">
-              <!-- Gradient overlay on hover -->
-              <div class="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      {displayPosts.map((post, index) => (
+        <article class={`group relative reveal stagger-${(index % 3) + 1}`}>
+          <!-- Holographic Card -->
+          <div class="relative bg-gray-900 border border-gray-800 rounded-lg overflow-hidden hover:border-cyan-500/50 transition-all duration-300 h-full flex flex-col">
+            <!-- Image Container -->
+            <div class="relative h-48 overflow-hidden">
+              <div class="absolute inset-0 bg-cyan-500/20 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <img 
+                src={post.image} 
+                alt={post.title}
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 filter grayscale group-hover:grayscale-0"
+              />
+              <!-- Glitch Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-80"></div>
               
-              <div class="relative p-6">
-                <!-- Header with icon -->
-                <div class="flex items-start gap-4 mb-4">
-                  <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-purple-500 rounded-lg flex items-center justify-center text-white flex-shrink-0 shadow-lg">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                  </div>
-                  <div class="flex-1">
-                    <div class="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400 mb-2">
-                      <time class="flex items-center gap-1">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                        </svg>
-                        {post.date}
-                      </time>
-                      <span class="flex items-center gap-1 text-primary-600 dark:text-primary-400 font-medium">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        {post.readTime}
-                      </span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-                  </div>
-                </div>
-                
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 line-clamp-3">
-                  {post.excerpt}
-                </p>
-                
-                <div class="flex items-center text-primary-600 dark:text-primary-400 font-medium pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <span>Read full article</span>
-                  <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                  </svg>
-                </div>
+              <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end z-20">
+                <span class="text-xs font-mono text-cyan-400 bg-black/50 px-2 py-1 rounded border border-cyan-500/30 backdrop-blur-sm">
+                  {post.category || 'TECH_LOG'}
+                </span>
+                <span class="text-xs font-mono text-gray-400">
+                  {post.date}
+                </span>
               </div>
-            </a>
-          </article>
-        ))}
-      </div>
-    ) : (
-      <div class="text-center py-12">
-        <p class="text-gray-500 dark:text-gray-400">No blog posts yet. Check back soon!</p>
-      </div>
-    )}
+            </div>
 
-    <div class="text-center">
-      <a 
-        href="/blog"
-        class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-      >
-        <span>View All Blog Posts</span>
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-        </svg>
-      </a>
+            <div class="p-6 flex-1 flex flex-col relative">
+              <!-- Scanline -->
+              <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+              <h3 class="text-xl font-bold text-white font-orbitron mb-3 group-hover:text-cyan-400 transition-colors line-clamp-2">
+                <a href={`/blog/${post.slug}`} class="focus:outline-none">
+                  <span class="absolute inset-0"></span>
+                  {post.title}
+                </a>
+              </h3>
+              
+              <p class="text-gray-400 text-sm mb-4 line-clamp-3 flex-1">
+                {post.excerpt}
+              </p>
+              
+              <div class="flex items-center justify-between pt-4 border-t border-gray-800 mt-auto">
+                <div class="flex items-center gap-2 text-xs font-mono text-gray-500">
+                  <span class="text-cyan-500">⏱</span>
+                  {post.readTime}
+                </div>
+                <span class="text-cyan-400 text-sm font-mono group-hover:translate-x-1 transition-transform duration-300">
+                  READ_FILE >>
+                </span>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
     </div>
   </div>
 </section>
