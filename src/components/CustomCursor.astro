@@ -1,0 +1,19 @@
+<div id="custom-cursor" class="fixed top-0 left-0 w-4 h-4 bg-accent-color rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-100 ease-out hidden md:block"></div>
+
+<script>
+  const cursor = document.getElementById('custom-cursor');
+  
+  if (cursor) {
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.transform = `translate(${e.clientX - 8}px, ${e.clientY - 8}px)`;
+    });
+
+    document.addEventListener('mousedown', () => {
+      cursor.style.transform += ' scale(0.8)';
+    });
+
+    document.addEventListener('mouseup', (e) => {
+      cursor.style.transform = `translate(${e.clientX - 8}px, ${e.clientY - 8}px) scale(1)`;
+    });
+  }
+</script>

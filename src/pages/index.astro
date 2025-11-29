@@ -2,12 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
-import Stats from '../components/Stats.astro';
 import Experience from '../components/Experience.astro';
 import Education from '../components/Education.astro';
 import FeaturedProjects from '../components/FeaturedProjects.astro';
 import Skills from '../components/Skills.astro';
-import Awards from '../components/Awards.astro';
 import Blog from '../components/Blog.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
@@ -76,17 +74,6 @@ const education = [
   }
 ];
 
-// Awards data
-const awards = [
-  {
-    title: "Top 5 Finalist - STARTUP AND IDEA FEST 2022",
-    description: "Awarded as the Top 5 finalist of STARTUP AND IDEA FEST 2022 Lumbini Province by Hon'ble Minister Tilak Sharma, the Ministry of Internal Affairs of Lumbini Province.",
-    year: "2022"
-  }
-];
-
-
-
 // SEO
 const title = `${user.name || user.login} - Developer Portfolio`;
 const description = tagline;
@@ -101,28 +88,22 @@ const description = tagline;
       avatar={user.avatar_url}
     />
     
-    <!-- Stats - showcase achievements -->
-    <Stats />
-    
-    <!-- Skills first - show what you can do -->
+    <!-- Skills - Expertise -->
     <Skills />
-    
-    <!-- Projects second - prove it with work -->
-    <FeaturedProjects />
-    
-    <!-- Experience third - professional background -->
+
+    <!-- Experience - Professional Background -->
     <Experience experiences={experiences} />
     
-    <!-- Education fourth - academic credentials -->
+    <!-- Education - Academic Credentials -->
     <Education education={education} />
     
-    <!-- Awards fifth - achievements and recognition -->
-    <Awards awards={awards} />
+    <!-- Projects - Portfolio -->
+    <FeaturedProjects />
     
-    <!-- Blog sixth - thought leadership -->
+    <!-- Blog - Thoughts -->
     <Blog />
     
-    <!-- Contact last - call to action -->
+    <!-- Contact - Call to Action -->
     <Contact
       email="Kuxall0@gmail.com"
       phone="+1 (437) 933-7042"

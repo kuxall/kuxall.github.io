@@ -1,435 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600;700&display=swap');
+/* Import Montserrat font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    /* Cyberpunk Neon Colors */
-    --cyber-cyan: 0 255 255;
-    --cyber-purple: 191 0 255;
-    --cyber-pink: 255 0 255;
-    --cyber-green: 0 255 0;
-    --cyber-blue: 0 150 255;
-    --cyber-dark: 10 10 15;
-    --cyber-darker: 5 5 8;
-    --cyber-gray: 26 26 46;
-    --cyber-light: 255 255 255;
+:root {
+  --bg-color: #171c28;
+  --text-color: #ffffff;
+  --accent-color: #09d3ac;
+  --purple-accent: #55198b;
+}
 
-    /* Legacy support */
-    --color-bg: var(--cyber-darker);
-    --color-text: var(--cyber-light);
-    --color-primary: var(--cyber-cyan);
-    --color-secondary: var(--cyber-purple);
-    --color-border: var(--cyber-gray);
-  }
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
 
-  * {
-    border-color: rgb(var(--cyber-gray));
-  }
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
 
-  html {
-    scroll-behavior: smooth;
-    background: rgb(var(--cyber-darker));
-  }
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
 
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  cursor: none;
+  /* Hide default cursor for custom one */
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mobile cursor reset */
+@media (pointer: coarse) {
   body {
-    background: linear-gradient(135deg, #0a0a0f 0%, #0f0a15 50%, #0a0a0f 100%);
-    color: white;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    position: relative;
-    overflow-x: hidden;
-    transition: all 0.3s;
-  }
-
-  /* CRT Screen Effect */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(0deg,
-        rgba(0, 0, 0, 0.15),
-        rgba(0, 0, 0, 0.15) 1px,
-        transparent 1px,
-        transparent 2px);
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.05;
-  }
-
-  /* Vignette Effect */
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
-    pointer-events: none;
-    z-index: 9998;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-weight: 700;
-    color: white;
-    font-family: 'Orbitron', 'Inter', sans-serif;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+    cursor: auto;
   }
 }
 
-@layer components {
-
-  /* Terminal/Cyber Buttons */
-  .btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.25rem;
-    font-weight: 500;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-    font-family: 'Fira Code', monospace;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    outline: none;
-  }
-
-  .btn-cyber {
-    background: transparent;
-    color: rgb(0, 255, 255);
-    border: 2px solid rgb(0, 255, 255);
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-  }
-
-  .btn-cyber:hover {
-    background: rgb(0, 255, 255);
-    color: black;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), inset 0 0 20px rgba(0, 255, 255, 0.2);
-  }
-
-  /* Cyber Cards */
-  .card {
-    background: rgba(10, 10, 15, 0.5);
-    border-radius: 0.5rem;
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    transition: all 0.3s;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-    position: relative;
-  }
-
-  .card:hover {
-    border-color: rgba(0, 255, 255, 0.6);
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.05);
-  }
-
-  .section {
-    padding: 4rem 0;
-    position: relative;
-  }
-
-  .container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-
-  .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 3rem;
-    position: relative;
-    font-family: 'Orbitron', sans-serif;
-    color: rgb(0, 255, 255);
-    text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-  }
-
-  .section-title::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -0.5rem;
-    width: 5rem;
-    height: 0.25rem;
-    border-radius: 9999px;
-    background: linear-gradient(90deg, transparent, rgb(0, 255, 255), transparent);
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
-  }
-
-  /* Terminal Badge */
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.25rem 0.75rem;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    font-family: 'Fira Code', monospace;
-    background: rgba(0, 255, 255, 0.1);
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    color: rgb(0, 255, 255);
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
-  }
-
-  /* Neon Text */
-  .neon-text {
-    color: rgb(0, 255, 255);
-    text-shadow:
-      0 0 5px rgba(0, 255, 255, 0.5),
-      0 0 10px rgba(0, 255, 255, 0.5),
-      0 0 20px rgba(0, 255, 255, 0.5),
-      0 0 40px rgba(0, 255, 255, 0.3);
-    /* Cyberpunk Neon Colors */
-    --cyber-cyan: 0 255 255;
-    --cyber-purple: 191 0 255;
-    --cyber-pink: 255 0 255;
-    --cyber-green: 0 255 0;
-    --cyber-blue: 0 150 255;
-    --cyber-dark: 10 10 15;
-    --cyber-darker: 5 5 8;
-    --cyber-gray: 26 26 46;
-    --cyber-light: 255 255 255;
-
-    /* Legacy support */
-    --color-bg: var(--cyber-darker);
-    --color-text: var(--cyber-light);
-    --color-primary: var(--cyber-cyan);
-    --color-secondary: var(--cyber-purple);
-    --color-border: var(--cyber-gray);
-  }
-
-  * {
-    border-color: rgb(var(--cyber-gray));
-  }
-
-  html {
-    scroll-behavior: smooth;
-    background: rgb(var(--cyber-darker));
-  }
-
-  body {
-    background: linear-gradient(135deg, #0a0a0f 0%, #0f0a15 50%, #0a0a0f 100%);
-    color: white;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    position: relative;
-    overflow-x: hidden;
-    transition: all 0.3s;
-  }
-
-  /* CRT Screen Effect */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(0deg,
-        rgba(0, 0, 0, 0.15),
-        rgba(0, 0, 0, 0.15) 1px,
-        transparent 1px,
-        transparent 2px);
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.05;
-  }
-
-  /* Vignette Effect */
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
-    pointer-events: none;
-    z-index: 9998;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-weight: 700;
-    color: white;
-    font-family: 'Orbitron', 'Inter', sans-serif;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
+.font-display {
+  font-family: 'Agustina Regular', 'Montserrat', sans-serif;
 }
 
-@layer components {
+/* Hide scrollbar but keep functionality */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
 
-  /* Terminal/Cyber Buttons */
-  .btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.25rem;
-    font-weight: 500;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-    font-family: 'Fira Code', monospace;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    outline: none;
-  }
-
-  .btn-cyber {
-    background: transparent;
-    color: rgb(0, 255, 255);
-    border: 2px solid rgb(0, 255, 255);
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-  }
-
-  .btn-cyber:hover {
-    background: rgb(0, 255, 255);
-    color: black;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), inset 0 0 20px rgba(0, 255, 255, 0.2);
-  }
-
-  /* Cyber Cards */
-  .card {
-    background: rgba(10, 10, 15, 0.5);
-    border-radius: 0.5rem;
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    transition: all 0.3s;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-    position: relative;
-  }
-
-  .card:hover {
-    border-color: rgba(0, 255, 255, 0.6);
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.05);
-  }
-
-  .section {
-    padding: 4rem 0;
-    position: relative;
-  }
-
-  .container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-
-  .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 3rem;
-    position: relative;
-    font-family: 'Orbitron', sans-serif;
-    color: rgb(0, 255, 255);
-    text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-  }
-
-  .section-title::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -0.5rem;
-    width: 5rem;
-    height: 0.25rem;
-    border-radius: 9999px;
-    background: linear-gradient(90deg, transparent, rgb(0, 255, 255), transparent);
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
-  }
-
-  /* Terminal Badge */
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.25rem 0.75rem;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    font-family: 'Fira Code', monospace;
-    background: rgba(0, 255, 255, 0.1);
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    color: rgb(0, 255, 255);
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
-  }
-
-  /* Neon Text */
-  .neon-text {
-    color: rgb(0, 255, 255);
-    text-shadow:
-      0 0 5px rgba(0, 255, 255, 0.5),
-      0 0 10px rgba(0, 255, 255, 0.5),
-      0 0 20px rgba(0, 255, 255, 0.5),
-      0 0 40px rgba(0, 255, 255, 0.3);
-  }
-
-  .neon-text-purple {
-    color: rgb(191, 0, 255);
-
-    text-shadow:
-      0 0 5px rgba(191, 0, 255, 0.5),
-      0 0 10px rgba(191, 0, 255, 0.5),
-      0 0 20px rgba(191, 0, 255, 0.5);
-  }
+.stroke-text-white {
+  -webkit-text-stroke: 1px #ffffff;
+  color: transparent;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
-
-/* Custom scrollbar - Cyberpunk style */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgb(10, 10, 15);
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgb(0, 255, 255), rgb(191, 0, 255));
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, rgb(0, 255, 255), rgb(255, 0, 255));
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
 }

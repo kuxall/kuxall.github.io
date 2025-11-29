@@ -5,6 +5,12 @@ export default {
   theme: {
     extend: {
       colors: {
+        'bg-color': '#171c28',
+        'text-color': '#ffffff',
+        'accent-color': '#09d3ac',
+        'dark-blue': '#171c28',
+        'purple-accent': '#55198b',
+        'cyan-accent': '#09d3ac',
         primary: {
           50: '#eff6ff',
           100: '#dbeafe',
@@ -19,7 +25,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Montserrat', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['Agustina Regular', 'Montserrat', 'sans-serif'],
         orbitron: ['Orbitron', 'sans-serif'],
         mono: ['Fira Code', 'monospace'],
       },
